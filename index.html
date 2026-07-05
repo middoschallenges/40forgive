@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,600;1,700&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,7 +17,6 @@
 <nav class="nav">
   <a class="brand" href="https://middoschallenges.com/" target="_blank" rel="noopener" aria-label="Middos Challenges home">
     <img class="brand-logo" src="images/logo - full color.png" alt="Middos Challenges">
-    <span><b>40 Days to Forgiveness</b></span>
   </a>
   <div class="nav-right">
     <div class="nav-links">
@@ -152,33 +151,52 @@
   <div class="wrap">
     <div class="raffle-card reveal">
       <div>
-        <h2 style="margin-top:0">Earn raffle tickets for the chance to win a $100 Amazon gift card</h2>
-        <ul class="raffle-steps">
-          <li><span class="n">✓</span> 1-minute daily challenges (Email or WhatsApp)</li>
-          <li><span class="n">✓</span> Real growth, one small step at a time</li>
-          <li><span class="n">✓</span> Chance to win a $100 Amazon gift card</li>
-        </ul>
-        <p class="raffle-fine">Restrictions apply. See amazon.com/gc-legal</p>
+        <h2 style="margin-top:0">$100 Amazon Gift Card Raffle</h2>
+        <p class="raffle-desc">Each time you complete a forgiveness challenge, you'll earn a raffle ticket toward a $100 Amazon gift card raffle. We know you're not doing this for the prize, but the prize doesn't hurt! 😉 Raffle will take place after Yom Kippur.</p>
+        <p class="raffle-fine">*Restrictions apply. See amazon.com/gc-legal</p>
       </div>
       <div class="prize">
-        <svg class="giftcard" viewBox="0 0 280 176" xmlns="http://www.w3.org/2000/svg">
+        <svg class="giftcard" viewBox="0 0 280 176" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="$100 Amazon Gift Card">
           <defs>
             <linearGradient id="gcbg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#232526"/><stop offset="100%" stop-color="#0f1011"/>
+              <stop offset="0%" stop-color="#232323"/><stop offset="100%" stop-color="#000"/>
             </linearGradient>
-            <linearGradient id="gcribbon" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="var(--gold)"/><stop offset="100%" stop-color="var(--coral)"/>
+            <linearGradient id="gcsheen" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff" stop-opacity=".10"/><stop offset="45%" stop-color="#fff" stop-opacity="0"/>
             </linearGradient>
           </defs>
           <rect x="1" y="1" width="278" height="174" rx="16" fill="url(#gcbg)" stroke="rgba(255,255,255,.14)"/>
-          <rect x="0" y="120" width="280" height="14" fill="url(#gcribbon)"/>
-          <text x="24" y="60" font-family="Schibsted Grotesk, system-ui, sans-serif" font-size="40" font-weight="700" fill="#fff">$100</text>
-          <text x="24" y="88" font-family="Schibsted Grotesk, system-ui, sans-serif" font-size="15" font-weight="600" fill="rgba(255,255,255,.75)">Amazon Gift Card</text>
-          <circle cx="238" cy="42" r="26" fill="rgba(255,255,255,.06)"/>
-          <path d="M226 42a12 12 0 1124 0 12 12 0 01-24 0z" fill="none" stroke="url(#gcribbon)" stroke-width="2.5"/>
+          <rect x="1" y="1" width="278" height="174" rx="16" fill="url(#gcsheen)"/>
+          <text x="24" y="70" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#fff" letter-spacing="-.5">amazon</text>
+          <path d="M25 82 C 52 100, 92 100, 117 84" fill="none" stroke="#FF9900" stroke-width="4" stroke-linecap="round"/>
+          <path d="M112 78 L119 84 L110 90" fill="none" stroke="#FF9900" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="24" y="118" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,.55)" letter-spacing="2">GIFT CARD</text>
+          <text x="256" y="42" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#FF9900" text-anchor="end">$100</text>
         </svg>
         <div class="pn">Amazon Gift Card</div>
         <div class="win">Grand prize · Winner announced after Yom Kippur</div>
+      </div>
+      <div class="confetti" aria-hidden="true">
+        <i class="confetti-piece c1" style="--i:0"></i>
+        <i class="confetti-piece c2 round" style="--i:1"></i>
+        <i class="confetti-piece c3" style="--i:2"></i>
+        <i class="confetti-piece c4 round" style="--i:3"></i>
+        <i class="confetti-piece c5" style="--i:4"></i>
+        <i class="confetti-piece c6 round" style="--i:5"></i>
+        <i class="confetti-piece c1 round" style="--i:6"></i>
+        <i class="confetti-piece c2" style="--i:7"></i>
+        <i class="confetti-piece c3 round" style="--i:8"></i>
+        <i class="confetti-piece c4" style="--i:9"></i>
+        <i class="confetti-piece c5 round" style="--i:10"></i>
+        <i class="confetti-piece c6" style="--i:11"></i>
+        <i class="confetti-piece c1" style="--i:12"></i>
+        <i class="confetti-piece c2 round" style="--i:13"></i>
+        <i class="confetti-piece c3" style="--i:14"></i>
+        <i class="confetti-piece c4 round" style="--i:15"></i>
+        <i class="confetti-piece c5" style="--i:16"></i>
+        <i class="confetti-piece c6 round" style="--i:17"></i>
+        <i class="confetti-piece c1 round" style="--i:18"></i>
+        <i class="confetti-piece c2" style="--i:19"></i>
       </div>
     </div>
   </div>
@@ -188,7 +206,7 @@
 <section class="section join2" id="join2">
   <div class="wrap">
     <div class="center reveal" style="max-width:720px;margin:0 auto">
-      <h2 class="h-sec" style="margin-top:0">Two ways to join</h2>
+      <h2 class="h-sec" style="margin-top:0">Choose how to join</h2>
       <p class="lead" style="margin-top:14px;max-width:60ch">Pick whichever is easiest for you — both get the same daily message.</p>
     </div>
 
@@ -199,7 +217,7 @@
           <span class="jico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
           <h3>Email</h3>
         </div>
-        <p>Each day's thought and challenge, delivered straight to your inbox.</p>
+        <p>Get each day's challenge delivered straight to your inbox.</p>
         <form id="mc-form-join2" class="signup mc-signup" action="https://middoschallenges.us12.list-manage.com/subscribe/post?u=3898a245ce153bd465b8b3594&amp;id=5bd32e5a8d&amp;f_id=008056e1f0" method="post" target="_blank">
           <input type="email" name="EMAIL" required placeholder="Enter your email address" aria-label="Email address">
           <button class="btn btn-orange" type="submit"><span class="btxt">Join by Email</span></button>
@@ -215,12 +233,12 @@
       <!-- WHATSAPP card -->
       <div class="jcard jcard-wa">
         <div class="jhead">
-          <span class="jico wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2z"/></svg></span>
+          <span class="jico wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.03c-.24.68-1.42 1.32-1.95 1.36-.5.05-.5.41-3.15-.66-2.65-1.07-4.3-3.77-4.43-3.95-.13-.18-1.06-1.41-1.06-2.69s.67-1.91.91-2.17c.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.59.45.24.56.79 1.94.86 2.08.07.14.12.31.02.49-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.18-.21.7-.81.89-1.09.18-.28.37-.23.61-.14.25.09 1.58.75 1.85.89.28.14.46.21.53.32.07.12.07.65-.17 1.33z"/></svg></span>
           <h3>WhatsApp</h3>
         </div>
-        <p>Message <b>FORGIVE</b> to <b>+1 (201) 870-0229</b> — or just tap the button.</p>
+        <p>Message <b>FORGIVE</b> to <b>+1 (201) 870-0229</b> — or just tap the button below.</p>
         <a class="btn btn-wa btn-lg js-wa jfull" href="#" data-wa>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.03c-.24.68-1.42 1.32-1.95 1.36-.5.05-.5.41-3.15-.66-2.65-1.07-4.3-3.77-4.43-3.95-.13-.18-1.06-1.41-1.06-2.69s.67-1.91.91-2.17c.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.59.45.24.56.79 1.94.86 2.08.07.14.12.31.02.49-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.18-.21.7-.81.89-1.09.18-.28.37-.23.61-.14.25.09 1.58.75 1.85.89.28.14.46.21.53.32.07.12.07.65-.17 1.33z"/></svg>
           Join WhatsApp
         </a>
         <p class="jnote">Don't worry — all member phone numbers are kept private.</p>
@@ -232,7 +250,7 @@
 <!-- ===================== COUNTDOWN ===================== -->
 <section class="section countdown">
   <div class="wrap center reveal">
-    <h2 class="h-sec">Begins Rosh Chodesh Elul</h2>
+    <h2 class="h-sec">Program begins Rosh Chodesh Elul</h2>
     <p class="cd-date">Thursday, August 13, 2026</p>
     <div class="clock" id="clock" role="timer" aria-label="Countdown to the start of the challenge">
       <div class="unit"><span class="cnum" id="cd-d">--</span><span class="clbl">Days</span></div>
@@ -243,7 +261,7 @@
       <span class="csep">:</span>
       <div class="unit"><span class="cnum" id="cd-s">--</span><span class="clbl">Seconds</span></div>
     </div>
-    <p class="cd-note" style="max-width:60ch">Don't wait for Elul to arrive — join now so you're ready to begin on day one.</p>
+    <p class="cd-note" style="max-width:60ch">Don't wait for Elul to arrive — join now so you're ready to begin on Day 1.</p>
     <a class="btn btn-orange btn-lg" href="#join2">Join the challenge</a>
   </div>
 </section>
@@ -270,7 +288,7 @@
         <a class="btn btn-ghost" href="https://donate.stripe.com/fZeaG982x4l77eM3cm?locale=en&__embed_source=buy_btn_1NlAfwKejQIrYYyrPpefbqSU" target="_blank" rel="noopener">Sponsor a day</a>
       </div>
       <div class="tier">
-        <div class="tlen">Amazon Gift Card</div>
+        <div class="tlen">Raffle Prize</div>
         <div class="tprice"><small>$</small>100</div>
         <div class="tdesc">Sponsor the Amazon Gift Card Raffle Prize.</div>
         <a class="btn btn-ghost" href="REPLACE_WITH_DONATION_URL" target="_blank" rel="noopener">Sponsor the Raffle Prize</a>
@@ -292,9 +310,8 @@
 <section class="section pdf" id="pdf-download">
   <div class="wrap">
     <div class="pdf-card reveal">
-      <div class="pdf-thumb" aria-hidden="true">
-        <svg class="pdf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
-        <div class="pdf-label">40 Days to<br>Forgiveness</div>
+      <div class="pdf-thumb">
+        <img src="images/forgiveness-pdf-thumbnail.png" alt="40 Days to Forgiveness PDF cover">
       </div>
       <div class="pdf-body">
         <h3>Download all forgiveness challenges</h3>
@@ -390,9 +407,9 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
       <span>You're in! Check your inbox to confirm.</span>
     </div>
-    <a class="wa-mini js-wa" href="#" data-wa style="justify-content:center;display:flex">
-      <span class="wa-badge"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.03c-.24.68-1.42 1.32-1.95 1.36-.5.05-.5.41-3.15-.66-2.65-1.07-4.3-3.77-4.43-3.95-.13-.18-1.06-1.41-1.06-2.69s.67-1.91.91-2.17c.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.59.45.24.56.79 1.94.86 2.08.07.14.12.31.02.49-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.18-.21.7-.81.89-1.09.18-.28.37-.23.61-.14.25.09 1.58.75 1.85.89.28.14.46.21.53.32.07.12.07.65-.17 1.33z"/></svg></span>
-      Or message <b>FORGIVE</b> to <b>+1 (201) 870-0229</b> on WhatsApp
+    <a class="btn btn-wa btn-lg js-wa final-wa" href="#" data-wa>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.03c-.24.68-1.42 1.32-1.95 1.36-.5.05-.5.41-3.15-.66-2.65-1.07-4.3-3.77-4.43-3.95-.13-.18-1.06-1.41-1.06-2.69s.67-1.91.91-2.17c.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.59.45.24.56.79 1.94.86 2.08.07.14.12.31.02.49-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.18-.21.7-.81.89-1.09.18-.28.37-.23.61-.14.25.09 1.58.75 1.85.89.28.14.46.21.53.32.07.12.07.65-.17 1.33z"/></svg>
+      Join on WhatsApp
     </a>
   </div>
 </section>

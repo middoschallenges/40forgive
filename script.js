@@ -66,7 +66,6 @@ var CONFIG = {
     var frame = document.getElementById("mc-embed-frame");
     if(!frame) return;
     var pendingForm = null;
-    var ignoreFirstLoad = true;
 
     document.querySelectorAll("form.mc-signup").forEach(function(form){
       form.target = "mc-embed-frame";
@@ -78,7 +77,6 @@ var CONFIG = {
     });
 
     frame.addEventListener("load", function(){
-      if(ignoreFirstLoad){ ignoreFirstLoad = false; return; }
       if(!pendingForm) return;
       var form = pendingForm; pendingForm = null;
       form.classList.remove("is-loading");
