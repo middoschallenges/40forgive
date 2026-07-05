@@ -1,12 +1,14 @@
 /* ============================================================
    40 DAYS TO FORGIVENESS — Middos Challenges
-   • WHATSAPP_NUMBER / WHATSAPP_TEXT — matches the link you gave:
-     api.whatsapp.com/send?phone=12018700229&text=Forgive
+   • WHATSAPP_NUMBER / WHATSAPP_TEXT — every WhatsApp button/link on the
+     page prefills this message. Visible on-page text that literally
+     says 'Message FORGIVE to...' is a separate, manual instruction and
+     is left as-is on purpose.
    • PROGRAM_START — countdown target: Rosh Chodesh Elul, Aug 13 2026.
    ============================================================ */
 var CONFIG = {
   WHATSAPP_NUMBER: "12018700229",
-  WHATSAPP_TEXT:   "Forgive",
+  WHATSAPP_TEXT:   "Please sign me up for 40 Days to Forgiveness",
   PROGRAM_START:   "2026-08-13T00:00:00-04:00"
 };
 
