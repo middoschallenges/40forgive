@@ -90,6 +90,66 @@ var CONFIG = {
     });
   })();
 
+  // Testimonials slider — pages through 2-at-a-time on wider screens,
+  // 1-at-a-time on narrow screens, sliding the track by whole viewport widths.
+  (function(){
+    var viewport = document.querySelector(".tst-viewport");
+    var track = document.querySelector(".tst-track");
+    var cards = track ? track.querySelectorAll(".tcard") : [];
+    if(!viewport || !track || !cards.length) return;
+
+    var prevBtn = document.querySelector(".tst-prev");
+    var nextBtn = document.querySelector(".tst-next");
+    var dotsWrap = document.querySelector(".tst-dots");
+    var index = 0;
+
+    function perPage(){
+      return window.matchMedia("(max-width:620px)").matches ? 1 : 3;
+    }
+    function pageCount(){
+      return Math.ceil(cards.length / perPage());
+    }
+    function buildDots(){
+      if(!dotsWrap) return;
+      dotsWrap.innerHTML = "";
+      var pages = pageCount();
+      for(var i=0;i<pages;i++){
+        var dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "tst-dot";
+        dot.setAttribute("aria-label", "Go to testimonials page " + (i+1));
+        dot.addEventListener("click", (function(pageIndex){
+          return function(){ index = pageIndex; update(); };
+        })(i));
+        dotsWrap.appendChild(dot);
+      }
+    }
+    function update(){
+      var max = pageCount() - 1;
+      if(index > max) index = max;
+      if(index < 0) index = 0;
+      track.style.transform = "translateX(-" + (index * 100) + "%)";
+      if(prevBtn) prevBtn.disabled = index === 0;
+      if(nextBtn) nextBtn.disabled = index === max;
+      if(dotsWrap){
+        Array.prototype.forEach.call(dotsWrap.children, function(dot, i){
+          dot.classList.toggle("is-active", i === index);
+        });
+      }
+    }
+    if(prevBtn) prevBtn.addEventListener("click", function(){ index--; update(); });
+    if(nextBtn) nextBtn.addEventListener("click", function(){ index++; update(); });
+
+    var resizeTimer;
+    window.addEventListener("resize", function(){
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function(){ buildDots(); update(); }, 150);
+    });
+
+    buildDots();
+    update();
+  })();
+
   // Scroll reveal
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var els = document.querySelectorAll(".reveal");
