@@ -8,7 +8,7 @@
    ============================================================ */
 var CONFIG = {
   WHATSAPP_NUMBER: "12018700229",
-  WHATSAPP_TEXT:   "Please sign me up for 40 Days to Forgiveness",
+  WHATSAPP_TEXT:   "How can I sign up for 40 Days to Forgiveness?",
   PROGRAM_START:   "2026-08-13T00:00:00-04:00"
 };
 
