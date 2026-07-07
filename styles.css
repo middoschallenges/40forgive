@@ -464,9 +464,8 @@ p{max-width:62ch}
 .dedication{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:1.2rem;
   color:rgba(255,255,255,.94);max-width:600px;margin:0 auto 26px;padding-bottom:26px;
   line-height:1.6;letter-spacing:.01em;border-bottom:1px solid rgba(255,255,255,.16)}
-.dedication em{color:var(--gold);font-style:italic}
-.dedication-en{display:block;margin-top:8px;font-family:var(--font-body);font-style:normal;
-  font-weight:500;font-size:.82rem;letter-spacing:.03em;color:rgba(255,255,255,.55)}
+.dedication-en{display:inline;margin-left:6px;font-family:var(--font-body);font-style:normal;
+  font-weight:500;font-size:.85rem;letter-spacing:.03em;color:rgba(255,255,255,.65)}
 
 /* ============ FOOTER ============ */
 .foot{background:#2A0E3C;color:rgba(255,255,255,.6);padding:44px 0;text-align:center}
