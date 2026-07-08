@@ -24,6 +24,18 @@ var CONFIG = {
   // Year
   var y = document.getElementById("yr"); if(y) y.textContent = new Date().getFullYear();
 
+  // Challenges nav link — hidden until the program actually starts, so we
+  // can deploy the (unfinished/unlinked) /challenges page early without
+  // publicizing it. Reveals itself automatically at PROGRAM_START, no
+  // redeploy needed.
+  (function(){
+    var navChallenges = document.getElementById("nav-challenges");
+    if(!navChallenges) return;
+    if(Date.now() >= new Date(CONFIG.PROGRAM_START).getTime()){
+      navChallenges.hidden = false;
+    }
+  })();
+
   // Countdown
   (function(){
     var clock = document.getElementById("clock");
