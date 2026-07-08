@@ -35,6 +35,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,600;1,700&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 
+<!-- Double (donation platform) — powers the Sponsor buttons below via Double.openCheckout() -->
+<script src="https://embed.double.giving/717a40d0-eea4-11f0-898a-bd94ee6c1c8b"></script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -358,18 +361,18 @@
       <div class="tier">
         <div class="tlen">1 day</div>
         <div class="tprice"><small>$</small>36</div>
-        <a class="btn btn-ghost" href="https://donate.stripe.com/fZeaG982x4l77eM3cm?locale=en&__embed_source=buy_btn_1NlAfwKejQIrYYyrPpefbqSU" target="_blank" rel="noopener">Sponsor a day</a>
+        <button class="btn btn-ghost" type="button" onclick="Double.openCheckout({campaign:'40-days-to-forgiveness', amount:36, summary:true})">Sponsor a day</button>
       </div>
       <div class="tier">
         <div class="tlen">Raffle Prize</div>
         <div class="tprice"><small>$</small>100</div>
-        <a class="btn btn-ghost" href="https://donate.stripe.com/bJe7sMc4HbQ9fHF7iB1wY0w" target="_blank" rel="noopener">Sponsor the Raffle Prize</a>
+        <button class="btn btn-ghost" type="button" onclick="Double.openCheckout({campaign:'40-days-to-forgiveness', amount:100, summary:true})">Sponsor the Raffle Prize</button>
       </div>
       <div class="tier featured">
         <div class="badge">Most meaningful</div>
         <div class="tlen">1 week</div>
         <div class="tprice"><small>$</small>180</div>
-        <a class="btn btn-orange" href="https://donate.stripe.com/5kQ8wQ2u78DXanleL31wY0v" target="_blank" rel="noopener">Sponsor a week</a>
+        <button class="btn btn-orange" type="button" onclick="Double.openCheckout({campaign:'40-days-to-forgiveness', amount:180, summary:true})">Sponsor a week</button>
       </div>
     </div>
 
