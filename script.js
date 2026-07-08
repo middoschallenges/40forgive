@@ -128,7 +128,9 @@ var CONFIG = {
       var max = pageCount() - 1;
       if(index > max) index = max;
       if(index < 0) index = 0;
-      track.style.transform = "translateX(-" + (index * 100) + "%)";
+      var targetCard = cards[index * perPage()];
+      var offset = targetCard ? targetCard.offsetLeft : 0;
+      track.style.transform = "translateX(-" + offset + "px)";
       if(prevBtn) prevBtn.disabled = index === 0;
       if(nextBtn) nextBtn.disabled = index === max;
       if(dotsWrap){

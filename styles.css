@@ -41,6 +41,7 @@ a{color:inherit;text-decoration:none}
   --shadow-md:0 14px 34px -14px rgba(60,20,84,.20);
   --shadow-lg:0 34px 70px -30px rgba(60,20,84,.34);
   --hero-grad:linear-gradient(135deg,#F7EEFF 0%,#FFF0D0 50%,#FFF3D9 100%);
+  --hero-grad-light:linear-gradient(135deg,#FCF9FF 0%,#FFFAEF 50%,#FFFBF2 100%);
   --r-sm:14px; --r-md:22px; --r-lg:32px; --r-xl:44px;
   --maxw:1180px;
   --font-display:"Fraunces",Georgia,serif;
@@ -165,6 +166,7 @@ p{max-width:62ch}
   display:grid;grid-template-columns:.95fr 1.05fr;gap:48px;align-items:center;
 }
 .hero-copy{max-width:600px;order:2}
+.hero-tag{display:none}
 .hero .meta-chips{margin:18px 0 26px;display:flex;flex-wrap:wrap;gap:10px}
 .hero .meta-chips span{
   font-size:.85rem;font-weight:600;color:var(--ink-2);background:rgba(255,255,255,.6);
@@ -386,7 +388,7 @@ p{max-width:62ch}
 .donate{background:var(--paper)}
 .donate-head{max-width:700px;margin:0 auto}
 .tiers{margin:56px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1020px}
-.tier{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);
+.tier{position:relative;background:var(--hero-grad-light);border:1px solid var(--line);border-radius:var(--r-lg);
   padding:48px 32px 40px;text-align:center;box-shadow:var(--shadow-sm);transition:transform .3s,box-shadow .3s,border-color .3s;
   display:flex;flex-direction:column}
 .tier:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:transparent}
@@ -398,6 +400,8 @@ p{max-width:62ch}
 .tier .tprice small{font-size:1.3rem;vertical-align:super;color:var(--muted);font-weight:500}
 .tier.featured .tprice small{color:#F5D9A8}
 .tier .btn{margin-top:auto;width:100%;font-size:1.05rem;padding:17px 20px}
+.tier .btn-ghost{background:var(--ink);color:#fff;border-color:transparent}
+.tier .btn-ghost:hover{background:var(--ink-2)}
 .tier .badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--coral));
   color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:20px;white-space:nowrap}
 .donate .dedications{margin:34px auto 0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 12px;max-width:720px}
@@ -501,9 +505,13 @@ p{max-width:62ch}
   .nav{display:none}
   .hero{padding-top:40px}
   .nav-cta{display:none}
+  .hero-tag{display:inline-block;background:linear-gradient(135deg,var(--ink-2),var(--ink));
+    color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:6px 14px;border-radius:20px;margin-bottom:12px}
   .section{padding:64px 0}
   .tst-track{gap:16px}
   .tcard{flex:0 0 100%}
+  .dedication{padding-left:20px;padding-right:20px}
   .signup{flex-direction:column;flex:0 1 auto;border-radius:24px;padding:8px}
   .signup input[type=email]{text-align:center}
   .signup .btn{width:100%}
@@ -512,6 +520,9 @@ p{max-width:62ch}
   .or{justify-content:center}
   .forty-card .big{font-size:4.2rem}
   .signup-hero{flex-direction:column;padding:8px}
+  .wa-mini{font-size:1.2rem;gap:13px;margin-top:28px;margin-bottom:14px;padding:12px 18px}
+  .wa-badge{width:40px;height:40px;border-radius:11px}
+  .wa-badge svg{width:24px;height:24px}
   .hero-art{display:none}
   .dove-mobile{display:block;width:100px;height:auto;margin:16px auto;animation:floatA 5.5s ease-in-out infinite}
   .countdown .wrap{padding:0 12px}
