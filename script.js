@@ -1,20 +1,19 @@
 /* ============================================================
    40 DAYS TO FORGIVENESS — Middos Challenges
-   • WHATSAPP_NUMBER / WHATSAPP_TEXT — every WhatsApp button/link on the
-     page prefills this message. Visible on-page text that literally
-     says 'Message FORGIVE to...' is a separate, manual instruction and
-     is left as-is on purpose.
+   • WHATSAPP_GROUP_LINK — every WhatsApp button/link on the page opens
+     this group. Visible on-page text that literally says 'Message
+     FORGIVE to...' is a separate, manual instruction and is left as-is
+     on purpose.
    • PROGRAM_START — countdown target: Rosh Chodesh Elul, Aug 13 2026.
    ============================================================ */
 var CONFIG = {
-  WHATSAPP_NUMBER: "12018700229",
-  WHATSAPP_TEXT:   "How can I sign up for 40 Days to Forgiveness?",
-  PROGRAM_START:   "2026-08-13T00:00:00-04:00"
+  WHATSAPP_GROUP_LINK: "https://chat.whatsapp.com/IYbSCM96yCqDkVg2rKwshW",
+  PROGRAM_START:       "2026-08-13T00:00:00-04:00"
 };
 
 (function(){
   // Wire every WhatsApp button/link
-  var waHref = "https://wa.me/" + CONFIG.WHATSAPP_NUMBER + "?text=" + encodeURIComponent(CONFIG.WHATSAPP_TEXT);
+  var waHref = CONFIG.WHATSAPP_GROUP_LINK;
   document.querySelectorAll("[data-wa]").forEach(function(a){
     a.setAttribute("href", waHref);
     a.setAttribute("target","_blank");

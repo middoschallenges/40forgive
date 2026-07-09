@@ -505,7 +505,7 @@ p{max-width:62ch}
   .nav{display:none}
   .hero{padding-top:20px}
   .nav-cta{display:none}
-  .hero-tag{display:inline-block;background:rgba(90,46,124,.14);border:1px solid rgba(90,46,124,.18);
+  .hero-tag{display:inline-block;background:rgba(90,46,124,.07);
     color:var(--ink-2);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
     padding:6px 14px;border-radius:20px;margin-bottom:24px}
   .section{padding:64px 0}
