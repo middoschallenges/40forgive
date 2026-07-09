@@ -163,6 +163,73 @@ var CONFIG = {
     update();
   })();
 
+  // Share your story modal — anonymous, no name/email collected. Posts to
+  // the raffle site's standalone /api/story endpoint.
+  (function(){
+    var openBtn = document.getElementById("shareStoryBtn");
+    var modal = document.getElementById("storyModal");
+    if(!openBtn || !modal) return;
+
+    var form = document.getElementById("storyForm");
+    var textarea = document.getElementById("storyText");
+    var errorEl = document.getElementById("storyError");
+    var successEl = document.getElementById("storySuccess");
+    var STORY_ENDPOINT = "https://raffle.40forgive.com/api/story";
+
+    function openModal(){
+      modal.hidden = false;
+      form.hidden = false;
+      successEl.hidden = true;
+      errorEl.hidden = true;
+      textarea.value = "";
+      setTimeout(function(){ textarea.focus(); }, 50);
+    }
+    function closeModal(){ modal.hidden = true; }
+
+    openBtn.addEventListener("click", openModal);
+    modal.querySelectorAll("[data-story-close]").forEach(function(el){
+      el.addEventListener("click", closeModal);
+    });
+    document.addEventListener("keydown", function(e){
+      if(e.key === "Escape" && !modal.hidden) closeModal();
+    });
+
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      errorEl.hidden = true;
+      var story = textarea.value.trim();
+      if(!story){
+        errorEl.textContent = "Please write something before submitting.";
+        errorEl.hidden = false;
+        return;
+      }
+      var btn = form.querySelector("button[type=submit]");
+      btn.disabled = true;
+      fetch(STORY_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ story: story })
+      })
+        .then(function(res){ return res.json().then(function(d){ return { status: res.status, data: d }; }); })
+        .then(function(r){
+          btn.disabled = false;
+          if(!r.data.ok){
+            errorEl.textContent = r.data.error || "Something went wrong. Please try again.";
+            errorEl.hidden = false;
+            return;
+          }
+          form.hidden = true;
+          successEl.hidden = false;
+          setTimeout(closeModal, 2200);
+        })
+        .catch(function(){
+          btn.disabled = false;
+          errorEl.textContent = "Something went wrong. Please try again.";
+          errorEl.hidden = false;
+        });
+    });
+  })();
+
   // Scroll reveal
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var els = document.querySelectorAll(".reveal");

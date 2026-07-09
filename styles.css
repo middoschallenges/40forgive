@@ -240,6 +240,35 @@ p{max-width:62ch}
 .tst-dot{width:9px;height:9px;border-radius:50%;background:rgba(60,20,84,.18);border:0;padding:0;cursor:pointer;transition:background .2s,transform .2s}
 .tst-dot.is-active{background:var(--ink);transform:scale(1.25)}
 
+/* ---- share your story ---- */
+.tst-share{text-align:center;margin-top:38px}
+.tst-share-prompt{font-size:1.05rem;color:var(--ink);max-width:52ch;margin:0 auto 16px;line-height:1.5}
+
+/* ---- share your story modal ---- */
+.story-modal{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:20px}
+.story-modal[hidden]{display:none}
+.story-modal-backdrop{position:absolute;inset:0;background:rgba(60,20,84,.45);backdrop-filter:blur(2px)}
+.story-modal-card{position:relative;background:var(--paper);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);
+  width:100%;max-width:480px;padding:36px 32px;z-index:1}
+.story-modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:0;
+  background:rgba(60,20,84,.08);color:var(--ink);font-size:1.3rem;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .2s}
+.story-modal-close:hover{background:rgba(60,20,84,.16)}
+.story-modal-card h3{font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--ink);margin:0 0 8px}
+.story-modal-sub{color:var(--body);font-size:.98rem;line-height:1.5;margin:0 0 20px}
+#storyForm textarea{width:100%;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;
+  font-family:var(--font-body);font-size:1rem;color:var(--ink);resize:vertical;min-height:130px;box-sizing:border-box}
+#storyForm textarea:focus{outline:2px solid var(--orange2);outline-offset:2px}
+#storyForm .btn{width:100%;margin-top:16px}
+.story-error{color:#9C2B2B;margin:10px 0 0;font-size:.88rem;font-weight:600}
+.story-error[hidden]{display:none}
+.story-success{display:flex;align-items:center;gap:10px;justify-content:center;color:#16A34A;font-weight:600;padding:20px 0}
+.story-success svg{width:22px;height:22px;flex:none}
+.story-success[hidden]{display:none}
+
+@media(max-width:620px){
+  .story-modal-card{padding:28px 22px}
+}
+
 /* ============ SECTION — you want to forgive ============ */
 .want{background:var(--paper)}
 .want .bridge{max-width:660px;margin:40px auto 0;text-align:center;font-size:1.14rem;color:var(--body)}

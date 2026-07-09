@@ -191,8 +191,32 @@ document.addEventListener('DOMContentLoaded', function () {
         </button>
       </div>
     </div>
+
+    <div class="tst-share reveal">
+      <p class="tst-share-prompt">Were you able to forgive? Share your story about how you were able to do it.</p>
+      <button class="btn btn-ghost" type="button" id="shareStoryBtn">Share your story</button>
+    </div>
   </div>
 </section>
+
+<!-- ===================== SHARE YOUR STORY MODAL ===================== -->
+<div class="story-modal" id="storyModal" hidden>
+  <div class="story-modal-backdrop" data-story-close></div>
+  <div class="story-modal-card" role="dialog" aria-modal="true" aria-labelledby="storyModalTitle">
+    <button class="story-modal-close" type="button" data-story-close aria-label="Close">&times;</button>
+    <h3 id="storyModalTitle">Share your story</h3>
+    <p class="story-modal-sub">We’d love to hear it — no name or email needed, just your words.</p>
+    <form id="storyForm">
+      <textarea id="storyText" rows="6" maxlength="5000" placeholder="Type your story here…" aria-label="Your story" required></textarea>
+      <p class="story-error" id="storyError" hidden></p>
+      <button class="btn btn-orange" type="submit"><span class="btxt">Submit</span></button>
+    </form>
+    <div class="story-success" id="storySuccess" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      <span>Thank you for sharing! 💜</span>
+    </div>
+  </div>
+</div>
 
 <!-- ===================== YOU WANT TO FORGIVE ===================== -->
 <section class="section want">
