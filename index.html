@@ -37,6 +37,22 @@
 
 <!-- Double (donation platform) — powers the Sponsor buttons below via Double.openCheckout() -->
 <script src="https://embed.double.giving/717a40d0-eea4-11f0-898a-bd94ee6c1c8b"></script>
+<!-- Hide Double's default floating overlay donate button (per Double's own docs) —
+     openCheckout() from the Sponsor buttons still works fine without it. -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const hideDoubleElements = () => {
+    const elementsToHide = document.querySelectorAll(
+      '.double-app .launcher-frame, .double-app .toaster-frame'
+    );
+    if (elementsToHide.length)
+      elementsToHide.forEach((e) => (e.style.display = 'none'));
+  };
+  hideDoubleElements();
+  const observer = new MutationObserver(hideDoubleElements);
+  observer.observe(document.body, { childList: true, subtree: true });
+});
+</script>
 
 <script type="application/ld+json">
 {

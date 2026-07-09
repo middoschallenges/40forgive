@@ -503,11 +503,11 @@ p{max-width:62ch}
 @media(max-width:620px){
   body{font-size:16px}
   .nav{display:none}
-  .hero{padding-top:40px}
+  .hero{padding-top:20px}
   .nav-cta{display:none}
-  .hero-tag{display:inline-block;background:linear-gradient(135deg,var(--ink-2),var(--ink));
-    color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-    padding:6px 14px;border-radius:20px;margin-bottom:12px}
+  .hero-tag{display:inline-block;background:rgba(90,46,124,.14);border:1px solid rgba(90,46,124,.18);
+    color:var(--ink-2);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:6px 14px;border-radius:20px;margin-bottom:24px}
   .section{padding:64px 0}
   .tst-track{gap:16px}
   .tcard{flex:0 0 100%}
