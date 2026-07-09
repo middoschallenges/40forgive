@@ -242,7 +242,6 @@ p{max-width:62ch}
 
 /* ---- share your story ---- */
 .tst-share{text-align:center;margin-top:38px}
-.tst-share-prompt{font-size:1.05rem;color:var(--ink);max-width:52ch;margin:0 auto 16px;line-height:1.5}
 
 /* ---- share your story modal ---- */
 .story-modal{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:20px}
