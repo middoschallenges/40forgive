@@ -521,7 +521,28 @@ document.addEventListener('DOMContentLoaded', function () {
 <!-- ===================== QUESTIONS STRIP ===================== -->
 <section class="questions-strip">
   <p class="dedication">This year’s program is dedicated <em>l’ilui nishmas</em> Yechiel Ben Shimon Dovid (Mr. Lawrence Nieman)</p>
-  <span>Questions? Email us at </span><a href="mailto:info@middoschallenges.com">info@middoschallenges.com</a>
+  <span>Questions? </span><a href="#contact">Send us a message</a>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="section contact" id="contact">
+  <div class="wrap center reveal" style="max-width:560px;margin:0 auto">
+    <h2 class="h-sec">Get in touch</h2>
+    <p class="lead">Questions, feedback, or just want to say hi? Send us a message and we’ll get back to you.</p>
+
+    <form id="contactForm" class="contact-form">
+      <input type="text" id="contactName" name="name" placeholder="Name (optional)" aria-label="Name">
+      <input type="email" id="contactEmail" name="email" placeholder="Email address" aria-label="Email address" required>
+      <textarea id="contactMessage" name="message" rows="5" maxlength="5000" placeholder="Your message…" aria-label="Message" required></textarea>
+      <button class="btn btn-orange" type="submit"><span class="btxt">Send message</span></button>
+    </form>
+    <p class="contact-error" id="contactError" hidden></p>
+    <div class="contact-success" id="contactSuccess" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      <span>Thanks — we’ll be in touch soon!</span>
+    </div>
+    <p class="contact-fallback">Prefer email? Reach us directly at <a href="mailto:info@middoschallenges.com">info@middoschallenges.com</a>.</p>
+  </div>
 </section>
 
 <!-- ===================== FOOTER ===================== -->

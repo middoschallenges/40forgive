@@ -129,9 +129,6 @@
   };
 
   var RAFFLE_BASE = "https://raffle.40forgive.com/claim.html?challenge=day-";
-  // Same Mailchimp endpoint + honeypot field used by the homepage forms.
-  var MC_ACTION = "https://middoschallenges.us12.list-manage.com/subscribe/post?u=3898a245ce153bd465b8b3594&id=5bd32e5a8d&f_id=008056e1f0";
-  var MC_HONEYPOT_NAME = "b_3898a245ce153bd465b8b3594_5bd32e5a8d";
 
   // ---- Date helpers ----------------------------------------------------------
   function easternToday() {
@@ -193,40 +190,16 @@
       '</article>';
   }
 
-  // Small, greyed-out "locked" strip — used both pre-launch and for the
-  // next-day teaser. Real WhatsApp button (wired by script.js via data-wa)
-  // and a real inline Mailchimp signup field (wired by script.js's
-  // form.mc-signup handler), matching the homepage forms exactly.
-  function gateHTML(badgeText, titleText) {
-    return '' +
-      '<div class="ch-gate">' +
-        '<span class="ch-gate-badge">🔒 ' + badgeText + '</span>' +
-        '<div class="ch-gate-title">' + titleText + '</div>' +
-        '<p class="ch-gate-sub">Get it the moment it drops — join by WhatsApp or email.</p>' +
-        '<div class="ch-gate-cta">' +
-          '<a class="btn btn-wa js-wa" href="#" data-wa>' +
-            '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.03c-.24.68-1.42 1.32-1.95 1.36-.5.05-.5.41-3.15-.66-2.65-1.07-4.3-3.77-4.43-3.95-.13-.18-1.06-1.41-1.06-2.69s.67-1.91.91-2.17c.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.59.45.24.56.79 1.94.86 2.08.07.14.12.31.02.49-.09.18-.14.29-.28.45-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.18-.21.7-.81.89-1.09.18-.28.37-.23.61-.14.25.09 1.58.75 1.85.89.28.14.46.21.53.32.07.12.07.65-.17 1.33z"/></svg>' +
-            'Join on WhatsApp' +
-          '</a>' +
-          '<form id="mc-form-gate" class="signup mc-signup ch-gate-form" action="' + MC_ACTION + '" method="post" target="_blank">' +
-            '<input type="email" name="EMAIL" required placeholder="Enter your email address" aria-label="Email address">' +
-            '<button class="btn btn-orange" type="submit"><span class="btxt">Subscribe</span></button>' +
-            '<div class="visually-hidden-block" aria-hidden="true"><input type="text" name="' + MC_HONEYPOT_NAME + '" tabindex="-1" value=""><input type="hidden" name="tags" value="3605477"></div>' +
-          '</form>' +
-          '<div class="mc-success ch-gate-success" hidden>' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>' +
-            '<span>You’re in!</span>' +
-          '</div>' +
-        '</div>' +
-      '</div>';
-  }
-
-  function lockedHTML(nextEntry) {
-    return gateHTML("Coming next", dayLabel(nextEntry.days) + " unlocks " + prettyDate(nextEntry.release));
-  }
-
   function prelaunchHTML(firstEntry) {
-    return gateHTML("Starting soon", "The 40 Days begin " + prettyDate(firstEntry.release));
+    return '<p class="ch-prelaunch">This program begins on Rosh Chodesh Elul (' + prettyDate(firstEntry.release) + '). Check back then to see the first challenge!</p>';
+  }
+
+  function todayLabelHTML() {
+    return '<div class="ch-today-label">Today’s Challenge</div>';
+  }
+
+  function pastTitleHTML() {
+    return '<h2 class="ch-past-title">Past Challenges</h2>';
   }
 
   // ---- Build the page --------------------------------------------------------
@@ -242,10 +215,14 @@
       // Before the program starts.
       out += next ? prelaunchHTML(next) : "";
     } else {
-      // Locked teaser for the next day (if any remain).
-      if (next) out += lockedHTML(next);
-      // Released challenges, newest first.
-      released.slice().reverse().forEach(function (e) { out += cardHTML(e); });
+      var newest = released[released.length - 1];
+      var older = released.slice(0, released.length - 1).reverse();
+      // Newest released challenge is "today's."
+      out += todayLabelHTML() + cardHTML(newest);
+      if (older.length) {
+        out += pastTitleHTML();
+        older.forEach(function (e) { out += cardHTML(e); });
+      }
     }
 
     document.getElementById("ch-list").innerHTML = out;

@@ -268,6 +268,23 @@ p{max-width:62ch}
   .story-modal-card{padding:28px 22px}
 }
 
+/* ---- contact form ---- */
+.contact-form{display:flex;flex-direction:column;gap:14px;max-width:480px;margin:24px auto 0;text-align:left}
+.contact-form input,.contact-form textarea{
+  width:100%;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;
+  font-family:var(--font-body);font-size:1rem;color:var(--ink);background:#fff;box-sizing:border-box;
+}
+.contact-form input:focus,.contact-form textarea:focus{outline:2px solid var(--orange2);outline-offset:2px}
+.contact-form textarea{resize:vertical;min-height:120px}
+.contact-form .btn{margin-top:2px}
+.contact-error{color:#9C2B2B;margin:14px 0 0;font-size:.88rem;font-weight:600;text-align:center}
+.contact-error[hidden]{display:none}
+.contact-success{display:flex;align-items:center;gap:10px;justify-content:center;color:#16A34A;font-weight:600;padding:20px 0 0}
+.contact-success svg{width:22px;height:22px;flex:none}
+.contact-success[hidden]{display:none}
+.contact-fallback{margin:18px 0 0;font-size:.9rem;color:var(--muted)}
+.contact-fallback a{text-decoration:underline;color:var(--orange2);font-weight:600}
+
 /* ============ SECTION — you want to forgive ============ */
 .want{background:var(--paper)}
 .want .bridge{max-width:660px;margin:40px auto 0;text-align:center;font-size:1.14rem;color:var(--body)}

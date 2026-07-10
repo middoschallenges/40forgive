@@ -230,6 +230,54 @@ var CONFIG = {
     });
   })();
 
+  // Contact form — posts to the raffle site's standalone /api/contact endpoint.
+  (function(){
+    var form = document.getElementById("contactForm");
+    if(!form) return;
+
+    var nameInput = document.getElementById("contactName");
+    var emailInput = document.getElementById("contactEmail");
+    var messageInput = document.getElementById("contactMessage");
+    var errorEl = document.getElementById("contactError");
+    var successEl = document.getElementById("contactSuccess");
+    var CONTACT_ENDPOINT = "https://raffle.40forgive.com/api/contact";
+
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      errorEl.hidden = true;
+      var email = emailInput.value.trim();
+      var message = messageInput.value.trim();
+      if(!email || !message){
+        errorEl.textContent = "Please fill in your email and message.";
+        errorEl.hidden = false;
+        return;
+      }
+      var btn = form.querySelector("button[type=submit]");
+      btn.disabled = true;
+      fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: nameInput.value.trim(), email: email, message: message })
+      })
+        .then(function(res){ return res.json().then(function(d){ return { status: res.status, data: d }; }); })
+        .then(function(r){
+          btn.disabled = false;
+          if(!r.data.ok){
+            errorEl.textContent = r.data.error || "Something went wrong. Please try again.";
+            errorEl.hidden = false;
+            return;
+          }
+          form.hidden = true;
+          successEl.hidden = false;
+        })
+        .catch(function(){
+          btn.disabled = false;
+          errorEl.textContent = "Something went wrong. Please try again.";
+          errorEl.hidden = false;
+        });
+    });
+  })();
+
   // Scroll reveal
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var els = document.querySelectorAll(".reveal");
