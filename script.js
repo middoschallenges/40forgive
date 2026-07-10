@@ -20,6 +20,16 @@ var CONFIG = {
     a.setAttribute("rel","noopener");
   });
 
+  // Build the support email link at runtime instead of leaving it as plain
+  // text/mailto in the page source, so basic HTML-scraping bots don't
+  // harvest it. Real visitors see/click it exactly as before.
+  document.querySelectorAll(".js-email").forEach(function(a){
+    var addr = "info" + "@" + "middoschallenges.com";
+    var subject = a.getAttribute("data-subject");
+    a.href = "mailto:" + addr + (subject ? "?subject=" + encodeURIComponent(subject) : "");
+    a.textContent = addr;
+  });
+
   // Year
   var y = document.getElementById("yr"); if(y) y.textContent = new Date().getFullYear();
 
@@ -238,6 +248,7 @@ var CONFIG = {
     var nameInput = document.getElementById("contactName");
     var emailInput = document.getElementById("contactEmail");
     var messageInput = document.getElementById("contactMessage");
+    var websiteInput = document.getElementById("contactWebsite");
     var errorEl = document.getElementById("contactError");
     var successEl = document.getElementById("contactSuccess");
     var CONTACT_ENDPOINT = "https://raffle.40forgive.com/api/contact";
@@ -245,6 +256,8 @@ var CONFIG = {
     form.addEventListener("submit", function(e){
       e.preventDefault();
       errorEl.hidden = true;
+      // Same instant-submit bot filter as the Mailchimp forms above.
+      if(Date.now() - pageLoadedAt < MIN_FILL_TIME_MS) return;
       var email = emailInput.value.trim();
       var message = messageInput.value.trim();
       if(!email || !message){
@@ -257,7 +270,7 @@ var CONFIG = {
       fetch(CONTACT_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: nameInput.value.trim(), email: email, message: message })
+        body: JSON.stringify({ name: nameInput.value.trim(), email: email, message: message, website: websiteInput.value })
       })
         .then(function(res){ return res.json().then(function(d){ return { status: res.status, data: d }; }); })
         .then(function(r){

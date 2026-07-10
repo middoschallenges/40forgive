@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
           <span>You’re in! Check your inbox to confirm.</span>
         </div>
-        <p class="jnote">Or email <b>“Forgive”</b> to <a href="mailto:info@middoschallenges.com?subject=Forgive">info@middoschallenges.com</a></p>
+        <p class="jnote">Or email <b>“Forgive”</b> to <a class="js-email" data-subject="Forgive"></a></p>
       </div>
 
       <!-- WHATSAPP card -->
@@ -586,6 +586,7 @@ document.addEventListener('DOMContentLoaded', function () {
       <input type="text" id="contactName" name="name" placeholder="Name (optional)" aria-label="Name">
       <input type="email" id="contactEmail" name="email" placeholder="Email address" aria-label="Email address" required>
       <textarea id="contactMessage" name="message" rows="5" maxlength="5000" placeholder="Your message…" aria-label="Message" required></textarea>
+      <div class="visually-hidden-block" aria-hidden="true"><input type="text" id="contactWebsite" name="website" tabindex="-1" autocomplete="off"></div>
       <button class="btn btn-orange" type="submit"><span class="btxt">Send message</span></button>
     </form>
     <p class="contact-error" id="contactError" hidden></p>
@@ -593,7 +594,7 @@ document.addEventListener('DOMContentLoaded', function () {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
       <span>Thanks — we’ll be in touch soon!</span>
     </div>
-    <p class="contact-fallback">Prefer email? Reach us directly at <a href="mailto:info@middoschallenges.com">info@middoschallenges.com</a>.</p>
+    <p class="contact-fallback">Prefer email? Reach us directly at <a class="js-email"></a>.</p>
   </div>
 </section>
 
@@ -604,7 +605,7 @@ document.addEventListener('DOMContentLoaded', function () {
       <img class="brand-logo" src="images/logo - all white.png" alt="Middos Challenges" width="936" height="216">
     </a>
     <p style="margin-top:18px">40 Days to Forgiveness is a program of Middos Challenges</p>
-    <p style="margin-top:6px">© Middos Challenges <span id="yr"></span>. All Rights Reserved. · <a class="foot-email" href="mailto:info@middoschallenges.com">info@middoschallenges.com</a></p>
+    <p style="margin-top:6px">© Middos Challenges <span id="yr"></span>. All Rights Reserved. · <a class="foot-email js-email"></a></p>
   </div>
 </footer>
 
