@@ -484,6 +484,8 @@ p{max-width:62ch}
 .faq-item[open] .plus{transform:rotate(45deg);background:linear-gradient(135deg,var(--orange1),var(--orange2))}
 .faq-item[open] .plus::before,.faq-item[open] .plus::after{background:var(--ink)}
 .faq-item .faq-a{padding:0 26px 24px;color:var(--body);font-size:.98rem;line-height:1.6}
+.faq-item .faq-a a{color:var(--orange-ink);font-weight:700;text-decoration:none}
+.faq-item .faq-a a:hover{color:var(--ink)}
 
 /* ============ FINAL CTA ============ */
 .final{position:relative;overflow:hidden;text-align:center;
