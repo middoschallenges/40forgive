@@ -69,17 +69,28 @@ var CONFIG = {
     tick(); var iv=setInterval(tick,1000);
   })();
 
-  // Extra bot filter: real people take at least a second or two to read
-  // the form and type an email. Bots that auto-submit instantly get
-  // quietly blocked here. This is on top of Mailchimp's own honeypot
-  // field and double opt-in — do not remove either of those.
+  // Extra bot filters, on top of Mailchimp's own honeypot field:
+  //   1. Timing — real people take a second or two to read the form and type
+  //      an email; bots that auto-submit instantly are blocked.
+  //   2. Our own honeypot (.js-hp, an off-screen field named "url") — real
+  //      users never see or fill it, but bots that fill every field trip it.
+  //      This is a separate, more tempting field than Mailchimp's own b_*
+  //      honeypot, which some bots have learned to leave blank.
+  // NOTE: both checks run in the browser, so they only stop bots that
+  // actually load the page. A bot that POSTs straight to Mailchimp's public
+  // endpoint bypasses them — the only defense there is Mailchimp-side (double
+  // opt-in) or routing signups through our own backend first.
   var pageLoadedAt = Date.now();
   var MIN_FILL_TIME_MS = 1200;
+  function looksLikeBot(form){
+    if(Date.now() - pageLoadedAt < MIN_FILL_TIME_MS) return true;
+    var hp = form.querySelector(".js-hp");
+    if(hp && hp.value.trim() !== "") return true;
+    return false;
+  }
   document.querySelectorAll("form.mc-signup").forEach(function(form){
     form.addEventListener("submit", function(event){
-      if(Date.now() - pageLoadedAt < MIN_FILL_TIME_MS){
-        event.preventDefault();
-      }
+      if(looksLikeBot(form)) event.preventDefault();
     });
   });
 
@@ -93,6 +104,7 @@ var CONFIG = {
     document.querySelectorAll("form.mc-signup").forEach(function(form){
       form.target = "mc-embed-frame";
       form.addEventListener("submit", function(){
+        if(looksLikeBot(form)) return; // blocked above — don't show a spinner
         if(!form.checkValidity()) return;
         pendingForm = form;
         form.classList.add("is-loading");
