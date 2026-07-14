@@ -220,7 +220,7 @@ p{max-width:62ch}
 
 /* ============ SECTION — testimonials ============ */
 .tst{background:var(--paper);padding-bottom:clamp(32px,4vw,48px)}
-.tst-head{max-width:760px}
+.tst-head{max-width:950px}
 .tst-slider{margin-top:52px}
 .tst-viewport{overflow:hidden}
 .tst-track{display:flex;gap:24px;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
@@ -521,12 +521,13 @@ p{max-width:62ch}
 .questions-strip a{color:#fff;font-weight:700;font-size:1.15rem;border-bottom:1.5px solid rgba(255,255,255,.4)}
 .questions-strip span{color:rgba(255,255,255,.8);font-size:1.15rem;font-weight:500}
 .dedication{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:1.2rem;
-  color:rgba(255,255,255,.94);max-width:600px;margin:0 auto 26px;padding-bottom:26px;
-  line-height:1.6;letter-spacing:.01em;border-bottom:1px solid rgba(255,255,255,.16)}
+  color:rgba(255,255,255,.94);max-width:600px;margin:0 auto;
+  line-height:1.6;letter-spacing:.01em}
 
 /* ============ FOOTER ============ */
 .foot{background:#2A0E3C;color:rgba(255,255,255,.6);padding:44px 0;text-align:center}
 .foot .brand{justify-content:center;color:#fff}
+.foot .brand-logo{height:52px}
 .foot p{margin:18px auto 0;font-size:.85rem;max-width:52ch}
 .foot .foot-email{color:rgba(255,255,255,.8);font-weight:600}
 
@@ -591,6 +592,25 @@ p{max-width:62ch}
   .tiers{grid-template-columns:1fr;max-width:340px}
   .maybe-grid{grid-template-columns:1fr;max-width:400px}
 }
+
+/* ============ LARGER BODY/COPY TEXT (desktop only) ============ */
+@media(min-width:621px){
+  body{font-size:19px}
+  .lead{font-size:clamp(1.18rem,1.6vw,1.4rem)}
+  .hero .desc{font-size:clamp(1.1rem,1.5vw,1.22rem)}
+  .tcard p{font-size:1.14rem}
+  .tcard.feature p{font-size:1.4rem}
+  .want .bridge{font-size:1.26rem}
+  .fcard p{font-size:1.08rem}
+  .raffle-card p{font-size:1.28rem}
+  .pdf-body p{font-size:1.35rem}
+  .faq-item .faq-a{font-size:1.08rem}
+  .jcard>p{font-size:1.1rem}
+  .story-modal-sub{font-size:1.08rem}
+  .contact-fallback{font-size:1rem}
+  .maybe{font-size:1.14rem}
+}
+
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
