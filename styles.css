@@ -98,6 +98,8 @@ p{max-width:62ch}
 .btn-orange:hover{transform:translateY(-2px);box-shadow:0 18px 34px -12px rgba(242,110,30,.7);filter:saturate(1.05)}
 .btn-ghost{background:rgba(255,255,255,.7);color:var(--ink);border:1.5px solid var(--line)}
 .btn-ghost:hover{background:#fff;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.btn-ink{background:linear-gradient(135deg,var(--ink-2),var(--ink));color:#fff;box-shadow:0 12px 26px -10px rgba(60,20,84,.5)}
+.btn-ink:hover{transform:translateY(-2px);box-shadow:0 18px 34px -12px rgba(60,20,84,.55)}
 .btn-lg{padding:19px 34px;font-size:1.06rem}
 
 :focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:6px}

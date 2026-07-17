@@ -64,12 +64,10 @@
   }
 
   function navHTML(prevEntry, nextEntry) {
-    var prevLabel = prevEntry ? "← Previous: " + dayLabel(prevEntry.days) : "← Previous";
-    var nextLabel = nextEntry ? "Next: " + dayLabel(nextEntry.days) + " →" : "Next →";
     return '' +
       '<div class="ch-nav">' +
-        '<button class="btn btn-ghost ch-nav-btn" id="ch-prev"' + (prevEntry ? "" : " disabled") + '>' + prevLabel + '</button>' +
-        '<button class="btn btn-ghost ch-nav-btn" id="ch-next"' + (nextEntry ? "" : " disabled") + '>' + nextLabel + '</button>' +
+        '<button class="btn btn-ghost ch-nav-btn" id="ch-prev"' + (prevEntry ? "" : " disabled") + '>← Previous challenge</button>' +
+        '<button class="btn btn-ghost ch-nav-btn" id="ch-next"' + (nextEntry ? "" : " disabled") + '>Next challenge →</button>' +
       '</div>';
   }
 
