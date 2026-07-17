@@ -664,7 +664,44 @@
     return '<p class="ch-prelaunch">This program begins on Rosh Chodesh Elul (' + prettyDate(firstEntry.release) + '). Check back then to see the first challenge!</p>';
   }
 
+  function navHTML(prevEntry, nextEntry) {
+    var prevLabel = prevEntry ? "← Previous: " + dayLabel(prevEntry.days) : "← Previous";
+    var nextLabel = nextEntry ? "Next: " + dayLabel(nextEntry.days) + " →" : "Next →";
+    return '' +
+      '<div class="ch-nav">' +
+        '<button class="btn btn-ghost ch-nav-btn" id="ch-prev"' + (prevEntry ? "" : " disabled") + '>' + prevLabel + '</button>' +
+        '<button class="btn btn-ghost ch-nav-btn" id="ch-next"' + (nextEntry ? "" : " disabled") + '>' + nextLabel + '</button>' +
+      '</div>';
+  }
+
   // ---- Build the page --------------------------------------------------------
+  // One challenge is shown at a time; Previous/Next page chronologically
+  // through everything released so far. `chronological` is oldest-first.
+  var chronological = [];
+  var currentIndex = 0;
+
+  function renderCurrent() {
+    var entry = chronological[currentIndex];
+    var prevEntry = currentIndex > 0 ? chronological[currentIndex - 1] : null;
+    var nextEntry = currentIndex < chronological.length - 1 ? chronological[currentIndex + 1] : null;
+    document.getElementById("ch-list").innerHTML =
+      cardHTML(entry) + navHTML(prevEntry, nextEntry);
+
+    document.getElementById("ch-prev").addEventListener("click", function () { goTo(currentIndex - 1); });
+    document.getElementById("ch-next").addEventListener("click", function () { goTo(currentIndex + 1); });
+
+    var url = new URL(location.href);
+    url.searchParams.set("day", pad2(entry.days[0]));
+    history.replaceState(null, "", url);
+  }
+
+  function goTo(index) {
+    if (index < 0 || index >= chronological.length) return;
+    currentIndex = index;
+    renderCurrent();
+    document.getElementById("ch-list").scrollIntoView({ block: "start" });
+  }
+
   function render() {
     var today = easternToday();
 
@@ -683,26 +720,15 @@
     var upcoming = SCHEDULE.filter(function (e) { return e.release > cutoff; });
     var next = upcoming[0];
 
-    var out = "";
-
     if (released.length === 0) {
       // Before the program starts.
-      out += next ? prelaunchHTML(next) : "";
-    } else {
-      var newest = released[released.length - 1];
-      var older = released.slice(0, released.length - 1).reverse();
-      out += cardHTML(newest);
-      older.forEach(function (e) { out += cardHTML(e); });
+      document.getElementById("ch-list").innerHTML = next ? prelaunchHTML(next) : "";
+      return;
     }
 
-    document.getElementById("ch-list").innerHTML = out;
-
-    // A #day-N hash still scrolls to that card. A ?day=NN link doesn't need
-    // to — that day is already the top "Today's Challenge" card.
-    if (location.hash) {
-      var target = document.querySelector(location.hash);
-      if (target) target.scrollIntoView();
-    }
+    chronological = released;
+    currentIndex = chronological.length - 1; // newest (or the pinned day)
+    renderCurrent();
   }
 
   render();
