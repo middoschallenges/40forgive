@@ -402,20 +402,22 @@ p{max-width:62ch}
 .wa-badge{width:30px;height:30px;flex:none;border-radius:8px;background:var(--wa-dark);display:grid;place-items:center}
 .wa-badge svg{width:18px;height:18px}
 
-/* ============ TWO WAYS TO JOIN ============ */
+/* ============ 3 WAYS TO JOIN ============ */
 .join2{background:linear-gradient(180deg,#FBF5FF,var(--paper))}
-.join2-grid{margin:46px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:940px}
+.join2-grid{margin:46px auto 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px;max-width:1180px}
 .jcard{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
   padding:34px 34px 30px;box-shadow:var(--shadow-md);overflow:hidden}
 .jcard::before{content:"";position:absolute;top:0;left:0;right:0;height:5px}
 .jcard-email::before{background:linear-gradient(90deg,var(--orange1),var(--orange2))}
 .jcard-wa::before{background:linear-gradient(90deg,#34d17a,var(--wa-dark))}
+.jcard-sms::before{background:linear-gradient(90deg,var(--ink-2),var(--ink))}
 .jhead{display:flex;align-items:center;gap:14px;margin-bottom:12px}
 .jhead h3{font-size:2.1rem;font-weight:700}
 .jico{width:50px;height:50px;flex:none;border-radius:14px;display:grid;place-items:center;color:#fff}
 .jico svg{width:25px;height:25px}
 .jcard-email .jico{background:linear-gradient(135deg,var(--orange1),var(--orange2))}
 .jcard-wa .jico{background:linear-gradient(135deg,#34d17a,var(--wa-dark))}
+.jcard-sms .jico{background:linear-gradient(135deg,var(--ink-2),var(--ink))}
 .jcard>p{font-size:1rem;margin-bottom:18px;color:var(--body)}
 .jcard>p b{color:var(--ink);font-weight:700}
 .jcard .signup{max-width:none;flex-direction:column;gap:12px;background:none;border:none;box-shadow:none;padding:0}
