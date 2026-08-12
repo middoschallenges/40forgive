@@ -2,7 +2,8 @@
   "rewrites": [
     { "source": "/challenges", "destination": "/challenges-index.html" },
     { "source": "/challenges/:day", "destination": "/challenges.html?day=:day" },
-    { "source": "/today", "destination": "/challenges.html" }
+    { "source": "/today", "destination": "/challenges.html" },
+    { "source": "/today/:day", "destination": "/challenges.html?day=:day" }
   ],
   "redirects": [
     { "source": "/tefillah", "destination": "https://middoschallenges.com/wp-content/uploads/2024/10/Ribbono-Shel-Olam-Forgiveness-tefillah-poster.pdf", "permanent": false },

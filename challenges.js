@@ -102,15 +102,16 @@
   function render() {
     var today = easternToday();
 
-    // A /challenges/NN link (rewritten to ?day=NN) pins the page to how it
-    // looked on that day — later challenges stay hidden, even if more have
-    // been released by the time someone opens the link.
+    // A /challenges/NN or /today/NN link (rewritten to ?day=NN) pins the page
+    // to how it looks on that day's release date — later challenges stay
+    // hidden. Works both ways: an already-released day shows its frozen
+    // historical state, and a not-yet-released day lets you preview it early.
     var dayParam = new URLSearchParams(location.search).get("day");
     var cutoff = today;
     if (dayParam) {
       var dayNum = parseInt(dayParam, 10);
       var linkedEntry = SCHEDULE.filter(function (e) { return e.days[0] === dayNum; })[0];
-      if (linkedEntry && linkedEntry.release < cutoff) cutoff = linkedEntry.release;
+      if (linkedEntry) cutoff = linkedEntry.release;
     }
 
     var released = SCHEDULE.filter(function (e) { return e.release <= cutoff; });
