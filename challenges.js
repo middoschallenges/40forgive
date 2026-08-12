@@ -102,11 +102,19 @@
   function render() {
     var today = easternToday();
 
-    // A /challenges/NN or /today/NN link (rewritten to ?day=NN) pins the page
-    // to how it looks on that day's release date — later challenges stay
-    // hidden. Works both ways: an already-released day shows its frozen
-    // historical state, and a not-yet-released day lets you preview it early.
-    var dayParam = new URLSearchParams(location.search).get("day");
+    // A /challenges/NN or /today/NN link pins the page to how it looks on
+    // that day's release date — later challenges stay hidden. Works both
+    // ways: an already-released day shows its frozen historical state, and
+    // a not-yet-released day lets you preview it early.
+    //
+    // The day number is read from the URL PATH (not a ?day= query string).
+    // Vercel rewrites a request like /today/02 to challenges.html?day=02
+    // purely on the server side — for a static file like this one, that
+    // destination query string never reaches the browser, so location.search
+    // is always empty here. location.pathname, however, still shows the
+    // real requested path ("/today/02"), so that's what we parse instead.
+    var pathDayMatch = location.pathname.match(/\/(\d+)\/?$/);
+    var dayParam = pathDayMatch ? pathDayMatch[1] : new URLSearchParams(location.search).get("day");
     var cutoff = today;
     if (dayParam) {
       var dayNum = parseInt(dayParam, 10);
