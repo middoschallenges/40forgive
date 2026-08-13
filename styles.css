@@ -146,7 +146,7 @@ p{max-width:62ch}
 @keyframes mcpop{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
 
 /* ============ DEDICATION BAR ============ */
-.dedication-bar{background:var(--ink);padding:9px 20px;text-align:center}
+.dedication-bar{background:var(--ink);padding:9px 20px;text-align:center;position:relative}
 .dedication-bar p{margin:0 auto;color:rgba(255,255,255,.88);font-size:.78rem;letter-spacing:.01em;line-height:1.3}
 .dedication-bar em{font-style:italic}
 @media(min-width:621px){
@@ -581,9 +581,13 @@ p{max-width:62ch}
 }
 @media(max-width:620px){
   body{font-size:16px}
-  .nav{padding:16px 20px}
-  .nav-links{right:20px}
-  .hero{padding-top:100px}
+  .dedication-bar{text-align:left;padding-right:64px}
+  .nav{position:absolute;top:5px;right:0;left:auto;padding:0;margin-right:16px}
+  .nav-burger{background:none}
+  .nav-burger span{background:#fff}
+  .brand{display:none}
+  .nav-links{right:0}
+  .hero{padding-top:26px}
   .nav-cta{display:none}
   .hero-tag{display:inline-block;background:rgba(90,46,124,.07);
     color:var(--ink-2);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
