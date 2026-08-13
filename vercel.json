@@ -7,6 +7,7 @@
   ],
   "redirects": [
     { "source": "/tefillah", "destination": "https://middoschallenges.com/wp-content/uploads/2024/10/Ribbono-Shel-Olam-Forgiveness-tefillah-poster.pdf", "permanent": false },
-    { "source": "/sponsor", "destination": "https://middoschallenges.pages.giving/40-days-to-forgiveness", "permanent": false }
+    { "source": "/sponsor", "destination": "https://middoschallenges.pages.giving/40-days-to-forgiveness", "permanent": false },
+    { "source": "/pdf", "destination": "https://middoschallenges.com/wp-content/uploads/2024/10/40-Days-to-Forgiveness-Middos-Challenges.pdf", "permanent": false }
   ]
 }
