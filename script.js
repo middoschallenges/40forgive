@@ -33,6 +33,38 @@ var CONFIG = {
   // Year
   var y = document.getElementById("yr"); if(y) y.textContent = new Date().getFullYear();
 
+  // Mobile/tablet hamburger menu
+  (function(){
+    var burger = document.getElementById("navBurger");
+    var links = document.getElementById("nav-links");
+    if(!burger || !links) return;
+
+    function closeMenu(){
+      links.classList.remove("is-open");
+      burger.setAttribute("aria-expanded", "false");
+    }
+    function toggleMenu(){
+      var open = links.classList.toggle("is-open");
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    burger.addEventListener("click", function(e){
+      e.stopPropagation();
+      toggleMenu();
+    });
+    links.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", closeMenu);
+    });
+    document.addEventListener("click", function(e){
+      if(links.classList.contains("is-open") && !links.contains(e.target)){
+        closeMenu();
+      }
+    });
+    document.addEventListener("keydown", function(e){
+      if(e.key === "Escape") closeMenu();
+    });
+  })();
+
   // Challenges nav link — hidden until the program actually starts, so we
   // can deploy the (unfinished/unlinked) /challenges page early without
   // publicizing it. Reveals itself automatically at PROGRAM_START, no

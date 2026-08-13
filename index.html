@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <img class="brand-logo" src="images/logo - full color.png" alt="Middos Challenges" width="1100" height="260">
   </a>
   <div class="nav-right">
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="/challenges" id="nav-challenges" hidden>Challenges</a>
       <a href="#faq">FAQ</a>
       <a href="#donate">Sponsor</a>
@@ -139,6 +139,9 @@ document.addEventListener('DOMContentLoaded', function () {
       <a href="https://middoschallenges.com/wp-content/uploads/2024/10/Ribbono-Shel-Olam-Forgiveness-tefillah-poster.pdf" target="_blank" rel="noopener">Tefillah</a>
       <a href="#contact">Contact</a>
     </div>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
