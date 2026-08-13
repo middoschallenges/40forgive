@@ -132,7 +132,10 @@ document.addEventListener('DOMContentLoaded', function () {
   </a>
   <div class="nav-right">
     <div class="nav-links" id="nav-links">
-      <a href="/challenges" id="nav-challenges" hidden>Challenges</a>
+      <button class="nav-links-close" id="navLinksClose" type="button" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <a href="/today" id="nav-challenges" hidden>Today’s Challenge</a>
       <a href="#faq">FAQ</a>
       <a href="#donate">Sponsor</a>
       <a href="https://middoschallenges.com/wp-content/uploads/2024/10/40-Days-to-Forgiveness-Middos-Challenges.pdf" target="_blank" rel="noopener">Download PDF</a>
@@ -144,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </button>
   </div>
 </nav>
+<div class="nav-overlay" id="navOverlay"></div>
 
 <!-- ===================== HERO ===================== -->
 <header class="hero" id="top">
@@ -408,25 +412,6 @@ document.addEventListener('DOMContentLoaded', function () {
         <p class="jnote">Just 1 short message a day — and your number stays private.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ===================== COUNTDOWN ===================== -->
-<section class="section countdown">
-  <div class="wrap center reveal">
-    <h2 class="h-sec">Program begins Rosh Chodesh Elul</h2>
-    <p class="cd-date">Thursday, August 13, 2026</p>
-    <div class="clock" id="clock" role="timer" aria-label="Countdown to the start of the challenge">
-      <div class="unit"><span class="cnum" id="cd-d">--</span><span class="clbl">Days</span></div>
-      <span class="csep">:</span>
-      <div class="unit"><span class="cnum" id="cd-h">--</span><span class="clbl">Hours</span></div>
-      <span class="csep">:</span>
-      <div class="unit"><span class="cnum" id="cd-m">--</span><span class="clbl" data-short="Min">Minutes</span></div>
-      <span class="csep">:</span>
-      <div class="unit"><span class="cnum" id="cd-s">--</span><span class="clbl" data-short="Sec">Seconds</span></div>
-    </div>
-    <p class="cd-note" style="max-width:60ch">Don’t wait for Elul to arrive! Join now so you’re ready to begin on Day 1!</p>
-    <a class="btn btn-orange btn-lg" href="#join2">Join the challenge</a>
   </div>
 </section>
 

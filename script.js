@@ -4,7 +4,8 @@
      a chat to this number with a pre-filled signup message. Visible
      on-page text that literally says 'Message FORGIVE to...' is a
      separate, manual instruction and is left as-is on purpose.
-   • PROGRAM_START — countdown target: Rosh Chodesh Elul, Aug 13 2026.
+   • PROGRAM_START — Rosh Chodesh Elul, Aug 13 2026. Used to auto-reveal the
+     "Today's Challenge" nav link once the program actually starts.
    ============================================================ */
 var CONFIG = {
   WHATSAPP_GROUP_LINK: "https://wa.me/12018700229?text=" + encodeURIComponent("Hi, I'd like to sign up for 40 Days to Forgiveness"),
@@ -33,25 +34,33 @@ var CONFIG = {
   // Year
   var y = document.getElementById("yr"); if(y) y.textContent = new Date().getFullYear();
 
-  // Mobile/tablet hamburger menu
+  // Mobile/tablet hamburger menu — slides in as a full-height side drawer
+  // with a dimmed overlay behind it; background scroll is locked while open.
   (function(){
     var burger = document.getElementById("navBurger");
     var links = document.getElementById("nav-links");
+    var overlay = document.getElementById("navOverlay");
+    var closeBtn = document.getElementById("navLinksClose");
     if(!burger || !links) return;
 
     function closeMenu(){
       links.classList.remove("is-open");
+      if(overlay) overlay.classList.remove("is-open");
       burger.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
     }
     function toggleMenu(){
       var open = links.classList.toggle("is-open");
+      if(overlay) overlay.classList.toggle("is-open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.style.overflow = open ? "hidden" : "";
     }
 
     burger.addEventListener("click", function(e){
       e.stopPropagation();
       toggleMenu();
     });
+    if(closeBtn) closeBtn.addEventListener("click", closeMenu);
     links.querySelectorAll("a").forEach(function(a){
       a.addEventListener("click", closeMenu);
     });
@@ -75,30 +84,6 @@ var CONFIG = {
     if(Date.now() >= new Date(CONFIG.PROGRAM_START).getTime()){
       navChallenges.hidden = false;
     }
-  })();
-
-  // Countdown
-  (function(){
-    var clock = document.getElementById("clock");
-    if(!clock) return;
-    var target = new Date(CONFIG.PROGRAM_START).getTime();
-    var elD=document.getElementById("cd-d"),elH=document.getElementById("cd-h"),
-        elM=document.getElementById("cd-m"),elS=document.getElementById("cd-s");
-    function pad(n){return (n<10?"0":"")+n;}
-    function tick(){
-      var diff = target - Date.now();
-      if(isNaN(target)){ return; }
-      if(diff<=0){
-        clock.innerHTML = '<div class="cd-live">The journey has begun — you can still join and catch up.</div>';
-        clearInterval(iv); return;
-      }
-      var s=Math.floor(diff/1000);
-      elD.textContent = Math.floor(s/86400);
-      elH.textContent = pad(Math.floor(s%86400/3600));
-      elM.textContent = pad(Math.floor(s%3600/60));
-      elS.textContent = pad(s%60);
-    }
-    tick(); var iv=setInterval(tick,1000);
   })();
 
   // Extra bot filters, on top of Mailchimp's own honeypot field:
