@@ -135,7 +135,7 @@ p{max-width:62ch}
 .mc-success{
   display:flex;align-items:center;gap:12px;background:rgba(34,197,94,.12);
   border:1.5px solid rgba(34,197,94,.35);border-radius:100px;padding:14px 22px;
-  max-width:430px;font-weight:600;font-size:.96rem;color:#166534;
+  max-width:430px;font-weight:600;font-size:.96rem;color:#166534;text-align:left;
   animation:mcpop .4s cubic-bezier(.2,.8,.2,1);
 }
 .mc-success svg{width:20px;height:20px;flex:none;color:#16A34A}
