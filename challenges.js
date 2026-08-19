@@ -63,11 +63,14 @@
     return '<p class="ch-prelaunch">This program begins on Rosh Chodesh Elul (' + prettyDate(firstEntry.release) + '). Check back then to see the first challenge!</p>';
   }
 
+  var ARROW_LEFT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>';
+  var ARROW_RIGHT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+
   function navHTML(prevEntry, nextEntry) {
     return '' +
       '<div class="ch-nav">' +
-        '<button class="btn btn-ghost ch-nav-btn" id="ch-prev"' + (prevEntry ? "" : " disabled") + '>← Previous challenge</button>' +
-        '<button class="btn btn-ghost ch-nav-btn" id="ch-next"' + (nextEntry ? "" : " disabled") + '>Next challenge →</button>' +
+        '<button class="btn btn-ghost ch-nav-btn" id="ch-prev"' + (prevEntry ? "" : " disabled") + '>' + ARROW_LEFT + 'Previous challenge</button>' +
+        '<button class="btn btn-ghost ch-nav-btn" id="ch-next"' + (nextEntry ? "" : " disabled") + '>Next challenge' + ARROW_RIGHT + '</button>' +
       '</div>';
   }
 
