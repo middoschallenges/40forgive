@@ -134,4 +134,6 @@ a.ch-idx-row:hover{background:var(--lav)}
   .ch-task-box{padding:26px 22px}
   .ch-idx-row{padding:16px 18px;gap:12px}
   .ch-idx-title{font-size:1rem}
+  .ch-nav{flex-direction:column}
+  .ch-nav-btn{width:100%}
 }
