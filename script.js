@@ -86,17 +86,10 @@ var CONFIG = {
     }
   })();
 
-  // Extra bot filters, on top of Mailchimp's own honeypot field:
-  //   1. Timing — real people take a second or two to read the form and type
-  //      an email; bots that auto-submit instantly are blocked.
-  //   2. Our own honeypot (.js-hp, an off-screen field named "url") — real
-  //      users never see or fill it, but bots that fill every field trip it.
-  //      This is a separate, more tempting field than Mailchimp's own b_*
-  //      honeypot, which some bots have learned to leave blank.
-  // NOTE: both checks run in the browser, so they only stop bots that
-  // actually load the page. A bot that POSTs straight to Mailchimp's public
-  // endpoint bypasses them — the only defense there is Mailchimp-side (double
-  // opt-in) or routing signups through our own backend first.
+  // Extra bot filter used alongside server-side checks below:
+  //   Timing — real people take a second or two to read the form and type
+  //   an email; bots that auto-submit instantly are blocked client-side so
+  //   they never even reach the network request.
   var pageLoadedAt = Date.now();
   var MIN_FILL_TIME_MS = 1200;
   function looksLikeBot(form){
@@ -105,40 +98,69 @@ var CONFIG = {
     if(hp && hp.value.trim() !== "") return true;
     return false;
   }
+
+  // Mailchimp signup forms — submit to our own backend (/api/subscribe)
+  // instead of straight to Mailchimp's public endpoint, so the honeypot,
+  // disposable-domain blocklist, and rate limit actually mean something: a
+  // bot that skips this page and POSTs directly to Mailchimp's URL can't
+  // reach any of those checks, since they never ran. Routing through our
+  // own server first closes that gap. Falls back to the original direct
+  // Mailchimp submission (via the hidden iframe) if our backend is
+  // unreachable, so a real signup never gets stuck.
+  var SUBSCRIBE_ENDPOINT = "https://raffle.40forgive.com/api/subscribe";
+  var mcFrame = document.getElementById("mc-embed-frame");
+  var pendingFallbackForm = null;
+
+  function showSuccess(form){
+    var success = form.nextElementSibling;
+    if(success && success.classList.contains("mc-success")){
+      form.style.display = "none";
+      success.hidden = false;
+    }
+  }
+  function fallbackToDirectMailchimp(form){
+    pendingFallbackForm = form;
+    form.submit();
+  }
+  if(mcFrame){
+    mcFrame.addEventListener("load", function(){
+      if(!pendingFallbackForm) return;
+      var form = pendingFallbackForm; pendingFallbackForm = null;
+      form.classList.remove("is-loading");
+      showSuccess(form);
+    });
+  }
+
   document.querySelectorAll("form.mc-signup").forEach(function(form){
+    form.target = "mc-embed-frame";
     form.addEventListener("submit", function(event){
-      if(looksLikeBot(form)) event.preventDefault();
+      event.preventDefault();
+      if(looksLikeBot(form)) return; // silently drop — no spinner, no fallback
+      if(!form.checkValidity()) return;
+
+      var emailInput = form.querySelector("input[type=email]");
+      var hp = form.querySelector(".js-hp");
+      form.classList.add("is-loading");
+
+      fetch(SUBSCRIBE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: emailInput.value.trim(), website: hp ? hp.value : "" })
+      })
+        .then(function(res){ return res.json(); })
+        .then(function(data){
+          if(data.ok){
+            form.classList.remove("is-loading");
+            showSuccess(form);
+          } else {
+            fallbackToDirectMailchimp(form); // our backend rejected it for a real reason
+          }
+        })
+        .catch(function(){
+          fallbackToDirectMailchimp(form); // network/backend failure
+        });
     });
   });
-
-  // Mailchimp signup forms — submit invisibly via hidden iframe so visitors
-  // stay on this page; falls back to opening a new tab if JS doesn't run.
-  (function(){
-    var frame = document.getElementById("mc-embed-frame");
-    if(!frame) return;
-    var pendingForm = null;
-
-    document.querySelectorAll("form.mc-signup").forEach(function(form){
-      form.target = "mc-embed-frame";
-      form.addEventListener("submit", function(){
-        if(looksLikeBot(form)) return; // blocked above — don't show a spinner
-        if(!form.checkValidity()) return;
-        pendingForm = form;
-        form.classList.add("is-loading");
-      });
-    });
-
-    frame.addEventListener("load", function(){
-      if(!pendingForm) return;
-      var form = pendingForm; pendingForm = null;
-      form.classList.remove("is-loading");
-      var success = form.nextElementSibling;
-      if(success && success.classList.contains("mc-success")){
-        form.style.display = "none";
-        success.hidden = false;
-      }
-    });
-  })();
 
   // Testimonials slider — pages through 2-at-a-time on wider screens,
   // 1-at-a-time on narrow screens, sliding the track by whole viewport widths.
