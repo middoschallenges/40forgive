@@ -144,6 +144,14 @@ p{max-width:62ch}
 .final .mc-success svg{color:#6EE7A8}
 .jcard .mc-success{max-width:none}
 @keyframes mcpop{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
+.mc-error{
+  margin-top:12px;background:rgba(220,38,38,.10);
+  border:1.5px solid rgba(220,38,38,.32);border-radius:100px;padding:12px 22px;
+  max-width:430px;font-weight:600;font-size:.92rem;color:#991B1B;text-align:left;
+}
+.mc-error[hidden]{display:none}
+.final .mc-error{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3);color:#fff;max-width:none}
+.jcard .mc-error{max-width:none}
 
 /* ============ DEDICATION BAR ============ */
 .dedication-bar{background:var(--ink);padding:9px 20px;text-align:center;position:relative}

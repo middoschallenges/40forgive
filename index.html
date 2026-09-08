@@ -158,11 +158,11 @@ document.addEventListener('DOMContentLoaded', function () {
       <p class="desc">Get quick, bite-sized free daily challenges to let go of resentment and open your heart to forgiveness.</p>
 
       <div class="join-block">
-      <!-- EMAIL SIGNUP · Mailchimp (existing, tested integration — action URL, honeypot field, and tag preserved as-is) -->
-      <form id="mc-form-hero" class="signup signup-hero mc-signup" action="https://middoschallenges.us12.list-manage.com/subscribe/post?u=3898a245ce153bd465b8b3594&amp;id=5bd32e5a8d&amp;f_id=008056e1f0" method="post" target="_blank">
+      <!-- EMAIL SIGNUP — posts to our own /api/subscribe, which filters spam and then adds the address to Mailchimp. Do NOT point this back at Mailchimp's public subscribe URL: that endpoint skips every filter, and publishing it here is what let bots sign up junk addresses directly. -->
+      <form id="mc-form-hero" class="signup signup-hero mc-signup" action="https://raffle.40forgive.com/api/subscribe" method="post">
         <input type="email" name="EMAIL" required placeholder="Enter email address" aria-label="Email address">
         <button class="btn btn-orange" type="submit"><span class="btxt">YES! Sign me up!</span></button>
-        <div class="visually-hidden-block" aria-hidden="true"><input type="text" name="b_3898a245ce153bd465b8b3594_5bd32e5a8d" tabindex="-1" value=""><input type="text" class="js-hp" name="url" tabindex="-1" autocomplete="off" value=""><input type="hidden" name="tags" value="3605477"></div>
+        <div class="visually-hidden-block" aria-hidden="true"><input type="text" class="js-hp" name="url" tabindex="-1" autocomplete="off" value=""></div>
       </form>
       <div class="mc-success" hidden>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -376,10 +376,10 @@ document.addEventListener('DOMContentLoaded', function () {
           <h3>Email</h3>
         </div>
         <p>Get each day’s challenge delivered straight to your inbox.</p>
-        <form id="mc-form-join2" class="signup mc-signup" action="https://middoschallenges.us12.list-manage.com/subscribe/post?u=3898a245ce153bd465b8b3594&amp;id=5bd32e5a8d&amp;f_id=008056e1f0" method="post" target="_blank">
+        <form id="mc-form-join2" class="signup mc-signup" action="https://raffle.40forgive.com/api/subscribe" method="post">
           <input type="email" name="EMAIL" required placeholder="Enter your email address" aria-label="Email address">
           <button class="btn btn-orange" type="submit"><span class="btxt">Join by Email</span></button>
-          <div class="visually-hidden-block" aria-hidden="true"><input type="text" name="b_3898a245ce153bd465b8b3594_5bd32e5a8d" tabindex="-1" value=""><input type="text" class="js-hp" name="url" tabindex="-1" autocomplete="off" value=""><input type="hidden" name="tags" value="3605477"></div>
+          <div class="visually-hidden-block" aria-hidden="true"><input type="text" class="js-hp" name="url" tabindex="-1" autocomplete="off" value=""></div>
         </form>
         <div class="mc-success" hidden>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -557,11 +557,11 @@ document.addEventListener('DOMContentLoaded', function () {
     <p class="lead">Healing doesn’t happen all at once. It happens one small step at a time. Join 1000+ Jews around the world beginning a 40-day journey toward forgiveness, peace, and stronger relationships.</p>
 
     <div class="cta-row">
-      <!-- EMAIL SIGNUP · Mailchimp (existing, tested integration — action URL, honeypot field, and tag preserved as-is) -->
-      <form id="mc-form-final" class="signup mc-signup" action="https://middoschallenges.us12.list-manage.com/subscribe/post?u=3898a245ce153bd465b8b3594&amp;id=5bd32e5a8d&amp;f_id=008056e1f0" method="post" target="_blank">
+      <!-- EMAIL SIGNUP — posts to our own /api/subscribe, which filters spam and then adds the address to Mailchimp. Do NOT point this back at Mailchimp's public subscribe URL: that endpoint skips every filter, and publishing it here is what let bots sign up junk addresses directly. -->
+      <form id="mc-form-final" class="signup mc-signup" action="https://raffle.40forgive.com/api/subscribe" method="post">
         <input type="email" name="EMAIL" required placeholder="Enter email address" aria-label="Email address">
         <button class="btn btn-orange" type="submit"><span class="btxt">Yes! Sign me up</span></button>
-        <div class="visually-hidden-block" aria-hidden="true"><input type="text" name="b_3898a245ce153bd465b8b3594_5bd32e5a8d" tabindex="-1" value=""><input type="text" class="js-hp" name="url" tabindex="-1" autocomplete="off" value=""><input type="hidden" name="tags" value="3605477"></div>
+        <div class="visually-hidden-block" aria-hidden="true"><input type="text" class="js-hp" name="url" tabindex="-1" autocomplete="off" value=""></div>
       </form>
       <div class="mc-success" hidden style="margin:20px auto 0;justify-content:center">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -613,8 +613,6 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>
 </footer>
 
-<!-- Hidden target so Mailchimp signups submit without leaving this page (JS enhances forms to use this; falls back to opening a new tab if JS is off) -->
-<iframe name="mc-embed-frame" id="mc-embed-frame" title="" style="display:none" aria-hidden="true"></iframe>
 
 <script src="script.js"></script>
 </body>

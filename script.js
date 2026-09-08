@@ -99,47 +99,51 @@ var CONFIG = {
     return false;
   }
 
-  // Mailchimp signup forms — submit to our own backend (/api/subscribe)
-  // instead of straight to Mailchimp's public endpoint, so the honeypot,
-  // disposable-domain blocklist, and rate limit actually mean something: a
-  // bot that skips this page and POSTs directly to Mailchimp's URL can't
-  // reach any of those checks, since they never ran. Routing through our
-  // own server first closes that gap. Falls back to the original direct
-  // Mailchimp submission (via the hidden iframe) if our backend is
-  // unreachable, so a real signup never gets stuck.
+  // Signup forms — always submit through our own backend (/api/subscribe),
+  // which runs the honeypot, disposable-domain blocklist, Tor check and rate
+  // limit before anything reaches Mailchimp. The form's own action points
+  // there too, so a visitor without JavaScript still gets filtered instead of
+  // handed a direct line to Mailchimp. Nothing here may fall back to
+  // Mailchimp's public subscribe URL: that path skips every check above, and
+  // it is exactly how junk addresses were getting onto the list.
   var SUBSCRIBE_ENDPOINT = "https://raffle.40forgive.com/api/subscribe";
-  var mcFrame = document.getElementById("mc-embed-frame");
-  var pendingFallbackForm = null;
 
+  function successFor(form){
+    var el = form.nextElementSibling;
+    while(el && !el.classList.contains("mc-success")) el = el.nextElementSibling;
+    return el;
+  }
   function showSuccess(form){
-    var success = form.nextElementSibling;
-    if(success && success.classList.contains("mc-success")){
+    var success = successFor(form);
+    if(success){
       form.style.display = "none";
       success.hidden = false;
     }
   }
-  function fallbackToDirectMailchimp(form){
-    pendingFallbackForm = form;
-    form.submit();
+  function showError(form, message){
+    var err = form.nextElementSibling;
+    if(!err || !err.classList.contains("mc-error")){
+      err = document.createElement("div");
+      err.className = "mc-error";
+      form.parentNode.insertBefore(err, form.nextSibling);
+    }
+    err.textContent = message;
+    err.hidden = false;
   }
-  if(mcFrame){
-    mcFrame.addEventListener("load", function(){
-      if(!pendingFallbackForm) return;
-      var form = pendingFallbackForm; pendingFallbackForm = null;
-      form.classList.remove("is-loading");
-      showSuccess(form);
-    });
+  function clearError(form){
+    var err = form.nextElementSibling;
+    if(err && err.classList.contains("mc-error")) err.hidden = true;
   }
 
   document.querySelectorAll("form.mc-signup").forEach(function(form){
-    form.target = "mc-embed-frame";
     form.addEventListener("submit", function(event){
       event.preventDefault();
-      if(looksLikeBot(form)) return; // silently drop — no spinner, no fallback
+      if(looksLikeBot(form)) return; // silently drop — no spinner, no retry hint
       if(!form.checkValidity()) return;
 
       var emailInput = form.querySelector("input[type=email]");
       var hp = form.querySelector(".js-hp");
+      clearError(form);
       form.classList.add("is-loading");
 
       fetch(SUBSCRIBE_ENDPOINT, {
@@ -149,15 +153,16 @@ var CONFIG = {
       })
         .then(function(res){ return res.json(); })
         .then(function(data){
+          form.classList.remove("is-loading");
           if(data.ok){
-            form.classList.remove("is-loading");
             showSuccess(form);
           } else {
-            fallbackToDirectMailchimp(form); // our backend rejected it for a real reason
+            showError(form, data.error || "Something went wrong. Please try again.");
           }
         })
         .catch(function(){
-          fallbackToDirectMailchimp(form); // network/backend failure
+          form.classList.remove("is-loading");
+          showError(form, "We couldn’t reach the signup server. Please try again in a moment.");
         });
     });
   });
