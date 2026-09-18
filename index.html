@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
            to the immediate-delivery framing (e.g. "Day 1 arrives the moment you
            sign up") and update the mc-success copy in the hero/final CTA forms too. -->
       <div class="meta-chips">
-        <span>Daily emails launching soon</span>
+        <span>Quick, 1-minute emails</span>
         <span>100% free</span>
       </div>
       </div>
@@ -350,6 +350,25 @@ document.addEventListener('DOMContentLoaded', function () {
         <i class="confetti-piece c1 round" style="--i:18"></i>
         <i class="confetti-piece c2" style="--i:19"></i>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MID-PAGE SIGNUP NUDGE ===================== -->
+<section class="section mid-signup">
+  <div class="wrap center reveal" style="max-width:560px;margin:0 auto">
+    <h2 class="h-sec" style="margin-top:0">Ready to begin?</h2>
+    <p class="lead" style="margin-top:14px">Sign up now — it only takes a few seconds.</p>
+    <!-- EMAIL SIGNUP — posts to our own /api/subscribe, which filters spam and then adds the address to Mailchimp. Do NOT point this back at Mailchimp's public subscribe URL: that endpoint skips every filter, and publishing it here is what let bots sign up junk addresses directly. -->
+    <form id="mc-form-mid" class="signup mc-signup" data-program="evergreen" action="https://raffle.40forgive.com/api/subscribe" method="post" style="margin:24px auto 0;max-width:480px">
+      <input type="email" name="EMAIL" required placeholder="Enter email address" aria-label="Email address">
+      <input type="hidden" name="program" value="evergreen">
+      <button class="btn btn-orange" type="submit"><span class="btxt">YES! Sign me up!</span></button>
+      <div class="visually-hidden-block" aria-hidden="true"><input type="text" class="js-hp" name="url" tabindex="-1" autocomplete="off" value=""></div>
+    </form>
+    <div class="mc-success" hidden style="margin:20px auto 0;justify-content:center">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      <span>You’re in! Day 1 is coming to your inbox soon.</span>
     </div>
   </div>
 </section>
