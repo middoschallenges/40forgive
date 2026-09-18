@@ -149,7 +149,11 @@ var CONFIG = {
       fetch(SUBSCRIBE_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: emailInput.value.trim(), website: hp ? hp.value : "" })
+        body: JSON.stringify({
+          email: emailInput.value.trim(),
+          website: hp ? hp.value : "",
+          program: form.getAttribute("data-program") || "seasonal"
+        })
       })
         .then(function(res){ return res.json(); })
         .then(function(data){

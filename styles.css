@@ -211,6 +211,8 @@ p{max-width:62ch}
 }
 .hero .desc{font-size:clamp(1rem,1.4vw,1.12rem);color:var(--body);max-width:46ch;margin-top:14px}
 .join-block{margin-top:28px}
+.ended-notice{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-lg);padding:20px 24px;max-width:440px}
+.ended-notice p{margin:0 0 14px;color:var(--body)}
 
 /* hero art */
 .hero-art{position:relative;min-height:440px;display:grid;place-items:center;order:1}
