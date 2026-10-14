@@ -58,6 +58,8 @@
 .ch-text{color:var(--body);font-family:var(--font-body);font-weight:400;font-size:1.15rem;line-height:1.7}
 .ch-text p{margin:0 0 26px}
 .ch-text p:last-child{margin-bottom:0}
+.ch-bullets{margin:0 0 26px;padding-left:24px}
+.ch-bullets li{margin-bottom:8px}
 .ch-text b{font-weight:700;color:var(--ink)}
 
 .ch-task-box{
