@@ -248,7 +248,7 @@
     "day": 40,
     "title": "Say It Out Loud",
     "intro": "Feeling forgiveness in your heart is a huge step, but there’s another crucial part: **expressing it out loud.**\n\nChazal say that even though Yosef Hatzaddik made peace with his 10 brothers for selling him, **he never actually said, “I forgive you.”**\n\nBecause he never expressed his forgiveness out loud, the souls of the 10 Shevatim had to return later as the Asara Harugei Malchus (the Ten Martyrs who suffered terribly during Roman times).\n\nThese 10 men were a Gilgul (reincarnation) of the 10 Shevatim. They had to be killed as a kapparah (atonement) because **Yosef never VERBALLY forgave them** many years ago.\n\nYour words have power - don’t just feel it, say it!",
-    "challenge": "Think about a person you’re trying to forgive.\n\n**Say out loud: “I wholeheartedly forgive __(person’s name)__ for doing ______.”**\n\n(If you don’t feel like you can wholeheartedly forgive them yet, at least say: “I want to forgive this person, and I am trying to forgive. Please, Hashem, help me forgive them wholeheartedly.”)"
+    "challenge": "Think about a person you’re trying to forgive.\n\n**Say out loud: “I wholeheartedly forgive [person’s name] for doing ______.”**\n\n(If you don’t feel like you can wholeheartedly forgive them yet, at least say: “I want to forgive this person, and I am trying to forgive. Please, Hashem, help me forgive them wholeheartedly.”)"
   }
 ];
 
