@@ -598,8 +598,10 @@ p{max-width:62ch}
 @media(max-width:620px){
   body{font-size:16px}
   .dedication-bar{text-align:left;padding-right:64px}
-  .nav{position:fixed;top:5px;right:0;left:auto;padding:0;margin-right:16px}
-  .nav-burger{background:none}
+  .nav{position:fixed;top:8px;right:0;left:auto;padding:0;margin-right:14px}
+  /* solid purple button with a white ring: visible over the purple dedication bar AND the light page below it */
+  .nav-burger{width:44px;height:44px;border-radius:12px;background:var(--ink);
+    box-shadow:0 0 0 2px rgba(255,255,255,.92),0 6px 16px rgba(60,20,84,.30)}
   .nav-burger span{background:#fff}
   .brand{display:none}
   .nav-links{top:52px;padding-top:24px}
