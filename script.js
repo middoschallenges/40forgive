@@ -144,10 +144,22 @@ var CONFIG = {
       var emailInput = form.querySelector("input[type=email]");
       var hp = form.querySelector(".js-hp");
       clearError(form);
-      form.classList.add("is-loading");
+
+      // Optimistic: the backend (spam checks + Mailchimp) takes a few seconds,
+      // so confirm right away and finish the request in the background.
+      // keepalive lets it complete even if the visitor closes the tab. If it
+      // fails, undo the confirmation and show the error.
+      showSuccess(form);
+      function undo(message){
+        var s = successFor(form);
+        if(s) s.hidden = true;
+        form.style.display = "";
+        showError(form, message);
+      }
 
       fetch(SUBSCRIBE_ENDPOINT, {
         method: "POST",
+        keepalive: true,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: emailInput.value.trim(),
@@ -157,16 +169,10 @@ var CONFIG = {
       })
         .then(function(res){ return res.json(); })
         .then(function(data){
-          form.classList.remove("is-loading");
-          if(data.ok){
-            showSuccess(form);
-          } else {
-            showError(form, data.error || "Something went wrong. Please try again.");
-          }
+          if(!data.ok) undo(data.error || "Something went wrong. Please try again.");
         })
         .catch(function(){
-          form.classList.remove("is-loading");
-          showError(form, "We couldn’t reach the signup server. Please try again in a moment.");
+          undo("We couldn’t reach the signup server. Please try again in a moment.");
         });
     });
   });
