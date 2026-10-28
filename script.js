@@ -108,6 +108,24 @@ var CONFIG = {
   // it is exactly how junk addresses were getting onto the list.
   var SUBSCRIBE_ENDPOINT = "https://raffle.40forgive.com/api/subscribe";
 
+  // Where this visitor came from: a ?src= tag on the link they clicked, else
+  // the site that referred them. Remembered for the session so it survives
+  // moving between pages; the backend turns it into a "src: ..." Mailchimp tag.
+  function trafficSource(){
+    var src = "";
+    try{
+      src = new URLSearchParams(location.search).get("src") || "";
+      if(!src && document.referrer){
+        var host = new URL(document.referrer).hostname.replace(/^www\./, "");
+        if(host !== location.hostname.replace(/^www\./, "") && !/(^|\.)(40forgive\.com|bitachonchallenge\.com)$/.test(host)) src = host;
+      }
+      if(src) sessionStorage.setItem("signupSource", src);
+      else src = sessionStorage.getItem("signupSource") || "";
+    }catch(e){}
+    return src;
+  }
+  var SIGNUP_SOURCE = trafficSource();
+
   function successFor(form){
     var el = form.nextElementSibling;
     while(el && !el.classList.contains("mc-success")) el = el.nextElementSibling;
@@ -164,7 +182,8 @@ var CONFIG = {
         body: JSON.stringify({
           email: emailInput.value.trim(),
           website: hp ? hp.value : "",
-          program: form.getAttribute("data-program") || "seasonal"
+          program: form.getAttribute("data-program") || "seasonal",
+          source: SIGNUP_SOURCE
         })
       })
         .then(function(res){ return res.json(); })
