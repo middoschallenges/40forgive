@@ -175,6 +175,8 @@ var CONFIG = {
         showError(form, message);
       }
 
+      if(window.va) window.va("event", { name: "signup", data: { program: form.getAttribute("data-program") || "seasonal", source: SIGNUP_SOURCE || "direct" } });
+
       fetch(SUBSCRIBE_ENDPOINT, {
         method: "POST",
         keepalive: true,
