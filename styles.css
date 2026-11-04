@@ -653,3 +653,10 @@ p{max-width:62ch}
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* Signup confirmation with instructions: tell people to open the welcome email (and look in Promotions/Spam) so Gmail learns it isn't spam */
+.mc-success:has(.mc-msg){align-items:flex-start;white-space:normal;width:auto;max-width:560px;border-radius:18px;padding:16px 20px;font-weight:400;text-align:left}
+.mc-success:has(.mc-msg) svg{margin-top:3px}
+.mc-msg{display:flex;flex-direction:column;gap:8px;line-height:1.5}
+.mc-msg strong{font-weight:700;font-size:1.05rem}
+.mc-msg b{font-weight:700}
