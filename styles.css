@@ -186,7 +186,6 @@ p{max-width:62ch}
 .nav-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
 .nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .nav-overlay{display:none}
-.nav-links-close{display:none}
 
 /* ============ HERO ============ */
 .hero{position:relative;background:var(--hero-grad);overflow:hidden;padding-top:162px}
@@ -552,7 +551,10 @@ p{max-width:62ch}
   /* fixed (not absolute) so it shares the drawer/overlay's stacking context —
      otherwise z-index alone doesn't guarantee it stays above the drawer */
   .nav{position:fixed;z-index:50}
-  .nav-burger{display:flex}
+  .nav-burger{display:flex;position:relative;z-index:46}
+  /* the burger is the only close button: keep it solid so it shows against the white drawer */
+  .nav-burger[aria-expanded="true"]{background:var(--ink)}
+  .nav-burger[aria-expanded="true"] span{background:#fff}
   .nav-overlay{
     display:block;position:fixed;inset:0;background:rgba(30,10,45,.45);z-index:44;
     opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;
@@ -568,15 +570,8 @@ p{max-width:62ch}
     overflow-y:auto;
   }
   .nav-links.is-open{visibility:visible;transform:translateX(0)}
-  .nav-links a{padding:16px 18px;border-radius:12px;opacity:1;font-size:1.05rem}
+  .nav-links a{display:flex;align-items:center;min-height:58px;padding:16px 20px;border-radius:14px;opacity:1;font-size:1.25rem}
   .nav-links a:hover{background:var(--lav)}
-  .nav-links-close{
-    display:flex;position:absolute;top:20px;right:18px;z-index:1;
-    width:38px;height:38px;align-items:center;justify-content:center;
-    border:0;border-radius:10px;background:var(--lav);color:var(--ink);cursor:pointer;
-  }
-  .nav-links-close svg{width:18px;height:18px}
-  .nav-links-close:hover{background:var(--rose)}
   .hero-inner{grid-template-columns:1fr;gap:20px;text-align:center}
   .hero-copy{max-width:640px;margin:0 auto}
   .hero .desc,.hero h1{max-width:none}
