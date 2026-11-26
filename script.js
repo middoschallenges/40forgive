@@ -131,12 +131,76 @@ var CONFIG = {
     while(el && !el.classList.contains("mc-success")) el = el.nextElementSibling;
     return el;
   }
+  // A small, quick confetti burst from the success check (site colors; the canvas covers the window and removes itself).
+  function signupConfetti(origin){
+    if(!origin) return;
+    var COLORS = ["#FF9E45", "#F26E1E", "#FFB066", "#E9D5FF", "#FFE2A8", "#3C1454"];
+    var cv = document.createElement("canvas");
+    cv.setAttribute("aria-hidden", "true");
+    cv.style.cssText = "position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9999";
+    document.body.appendChild(cv);
+    var dpr = Math.min(window.devicePixelRatio || 1, 2), W = window.innerWidth, H = window.innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    var ctx = cv.getContext("2d"); ctx.scale(dpr, dpr);
+    var r = origin.getBoundingClientRect(), ox = r.left + r.width / 2, oy = r.top + r.height / 2, parts = [];
+    for(var i = 0; i < 46; i++){
+      var a = -Math.PI / 2 + (Math.random() - .5) * Math.PI * 1.5, v = 4 + Math.random() * 6;
+      parts.push({ x: ox, y: oy, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 2, w: 5 + Math.random() * 4, h: 7 + Math.random() * 5,
+        rot: Math.random() * 6.3, vr: (Math.random() - .5) * .3, c: COLORS[i % COLORS.length], round: Math.random() < .3, flip: Math.random() * 6.3 });
+    }
+    var t0 = performance.now(), DUR = 1900;
+    function frame(now){
+      var t = now - t0, fade = t > DUR - 600 ? Math.max(0, (DUR - t) / 600) : 1;
+      ctx.clearRect(0, 0, W, H);
+      parts.forEach(function(p){
+        p.vx *= .97; p.vy = p.vy * .97 + .22; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.flip += .14;
+        ctx.save(); ctx.globalAlpha = fade; ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.scale(1, Math.cos(p.flip));
+        ctx.fillStyle = p.c;
+        if(p.round){ ctx.beginPath(); ctx.arc(0, 0, p.w / 2, 0, 6.3); ctx.fill(); } else ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+      if(t < DUR) requestAnimationFrame(frame); else cv.remove();
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // So it doesn't feel jarring: the button shows "joining" dots for a moment, the form fades away, then the
+  // confirmation rises in line by line with the check popping and a small confetti burst.
+  // Returns an undo function (used if the signup fails).
   function showSuccess(form){
     var success = successFor(form);
-    if(success){
-      form.style.display = "none";
-      success.hidden = false;
+    var btn = form.querySelector("button[type=submit]");
+    var btnHTML = btn ? btn.innerHTML : "";
+    var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var timers = [], failed = false;
+    if(btn){
+      btn.style.minWidth = btn.offsetWidth + "px";
+      btn.innerHTML = '<span class="mc-dots" aria-label="Signing you up"><i></i><i></i><i></i></span>';
+      btn.disabled = true;
     }
+    form.classList.add("is-sending");
+    timers.push(setTimeout(function(){
+      form.classList.add("is-leaving");
+      timers.push(setTimeout(function(){
+        if(failed) return;
+        form.style.display = "none";
+        form.classList.remove("is-sending", "is-leaving");
+        if(success){
+          success.classList.remove("mc-enter"); void success.offsetWidth;
+          success.classList.add("mc-enter");
+          success.hidden = false;
+          if(!calm) timers.push(setTimeout(function(){ signupConfetti(success.querySelector("svg")); }, 250));
+        }
+      }, calm ? 0 : 240));
+    }, calm ? 250 : 750));
+    return function(){
+      failed = true;
+      timers.forEach(clearTimeout);
+      if(success){ success.hidden = true; success.classList.remove("mc-enter"); }
+      form.style.display = "";
+      form.classList.remove("is-sending", "is-leaving");
+      if(btn){ btn.innerHTML = btnHTML; btn.disabled = false; btn.style.minWidth = ""; }
+    };
   }
   function showError(form, message){
     var err = form.nextElementSibling;
@@ -167,11 +231,9 @@ var CONFIG = {
       // so confirm right away and finish the request in the background.
       // keepalive lets it complete even if the visitor closes the tab. If it
       // fails, undo the confirmation and show the error.
-      showSuccess(form);
+      var undoSuccess = showSuccess(form);
       function undo(message){
-        var s = successFor(form);
-        if(s) s.hidden = true;
-        form.style.display = "";
+        undoSuccess();
         showError(form, message);
       }
 

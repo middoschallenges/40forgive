@@ -655,3 +655,27 @@ p{max-width:62ch}
 .mc-msg{display:flex;flex-direction:column;gap:8px;line-height:1.5}
 .mc-msg strong{font-weight:700;font-size:1.05rem}
 .mc-msg b{font-weight:700}
+
+/* ---------- 2026-11-25: smoother email signup confirmation (same as bitachonchallenge.com) ---------- */
+/* 1) The button shows three bouncing dots for a moment. */
+.mc-signup.is-sending .btn{pointer-events:none}
+.mc-dots{display:inline-flex;gap:6px;align-items:center;justify-content:center;height:1.2em}
+.mc-dots i{width:7px;height:7px;border-radius:50%;background:currentColor;animation:mc-dot 1s ease-in-out infinite}
+.mc-dots i:nth-child(2){animation-delay:.15s}
+.mc-dots i:nth-child(3){animation-delay:.3s}
+@keyframes mc-dot{0%,80%,100%{transform:translateY(0);opacity:.45}40%{transform:translateY(-6px);opacity:1}}
+/* 2) The form fades away. */
+.mc-signup.is-leaving{opacity:0;transform:translateY(-6px) scale(.98);transition:opacity .22s ease,transform .22s ease}
+/* 3) The confirmation rises in, then each line follows; the check pops and draws itself. */
+.mc-success.mc-enter{animation:mc-in .5s cubic-bezier(.2,.9,.3,1.15) both}
+.mc-success.mc-enter .mc-msg > *{animation:mc-line .45s ease-out both}
+.mc-success.mc-enter .mc-msg > :nth-child(1){animation-delay:.12s}
+.mc-success.mc-enter .mc-msg > :nth-child(2){animation-delay:.28s}
+.mc-success.mc-enter .mc-msg > :nth-child(3){animation-delay:.44s}
+.mc-success.mc-enter > svg{animation:mc-check-pop .5s .15s cubic-bezier(.2,1.5,.4,1) both}
+.mc-success.mc-enter > svg path{stroke-dasharray:24;animation:mc-check-draw .4s .45s ease-out both}
+@keyframes mc-in{0%{opacity:0;transform:translateY(14px) scale(.96)}100%{opacity:1;transform:none}}
+@keyframes mc-line{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:none}}
+@keyframes mc-check-pop{0%{transform:scale(0)}100%{transform:scale(1)}}
+@keyframes mc-check-draw{0%{stroke-dashoffset:24}100%{stroke-dashoffset:0}}
+@media (prefers-reduced-motion: reduce){.mc-dots i,.mc-success.mc-enter,.mc-success.mc-enter .mc-msg > *,.mc-success.mc-enter > svg,.mc-success.mc-enter > svg path{animation:none !important}.mc-signup.is-leaving{transition:none}}
