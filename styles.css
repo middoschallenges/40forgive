@@ -679,3 +679,6 @@ p{max-width:62ch}
 @keyframes mc-check-pop{0%{transform:scale(0)}100%{transform:scale(1)}}
 @keyframes mc-check-draw{0%{stroke-dashoffset:24}100%{stroke-dashoffset:0}}
 @media (prefers-reduced-motion: reduce){.mc-dots i,.mc-success.mc-enter,.mc-success.mc-enter .mc-msg > *,.mc-success.mc-enter > svg,.mc-success.mc-enter > svg path{animation:none !important}.mc-signup.is-leaving{transition:none}}
+/* Owner's call 2026-11-25: the lines under the headline a drop smaller; Promotions/Spam semibold instead of bold */
+.mc-msg > span{font-size:.9rem}
+.mc-msg b{font-weight:600}
